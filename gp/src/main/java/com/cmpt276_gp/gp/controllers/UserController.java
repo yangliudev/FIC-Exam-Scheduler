@@ -22,22 +22,70 @@ public class UserController {
     private UserRepository userRepo;
 
     @PostMapping("/users/login")
-    public String LoginUser(@RequestParam Map<String, String> loginUser, HttpServletResponse response){
+    public String loginUser(@RequestParam Map<String, String> loginUser, HttpServletResponse response) {
         String username = loginUser.get("username");
         String password = loginUser.get("password");
         Users user = userRepo.findByUsernameAndPassword(username, password);
-        if(user != null){
+        if (user != null) {
             String type = user.getUserType();
-            if(type == "admin"){
+            if ("admin".equals(type)) {
                 // landing page for admins
                 return "users/admin/admin";
-            } else if(type == "teacher"){
+            } else if ("teacher".equals(type)) {
                 return "users/teacher/teacher";
-            } else{
+            } else {
                 return "users/proctor/proctor";
             }
         }
         // back to login page with error 
         return "something for now";
     }
+    
+
+    @PostMapping("/users/add")
+    public String addUserString(@RequestParam Map<String, String> newuser, HttpServletResponse response) {
+        System.out.println("ADD user");
+    
+        // Retrieve the form data
+        String username = newuser.get("username");
+        String password = newuser.get("password");
+        String userType = newuser.get("userType");
+    
+        // Create a new Users object with the retrieved data
+        Users newUser = new Users(username, password, userType);
+        // Save the new Users object to the repository
+        userRepo.save(newUser);
+        response.setStatus(201);
+        
+        // Redirect to the login page
+        return "redirect:/users/login";
+    }
+
+    @GetMapping("/users/admin")
+    public String showAdminPage() {
+        return "users/admin/admin";
+    }
+
+    @GetMapping("/users/teacher")
+    public String showTeacherPage() {
+        return "users/teacher/teacher";
+    }
+
+    @GetMapping("/users/proctor")
+    public String showProctorPage() {
+        return "users/proctor/proctor";
+    }
+
+    @GetMapping("/users/newUser")
+    public String showNewUserPage() {
+        return "users/newUser";
+    }
+    
+    @GetMapping("/users/login")
+    public String showLoginPage() {
+        return "users/login";
+    }
+    
+    
+
 }
