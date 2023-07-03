@@ -1,0 +1,15 @@
+Hostname: dpg-cifjv9lph6el4umpd2mg-a
+
+Port: 5432
+
+Database: cmpt_276_gp_db
+
+Username: cmpt_276_gp_db_user
+
+Password: JRdFP14fKeUyykP7rGZ3QCtQIL7tVuFW
+
+Internal DB URL: postgres://cmpt_276_gp_db_user:JRdFP14fKeUyykP7rGZ3QCtQIL7tVuFW@dpg-cifjv9lph6el4umpd2mg-a/cmpt_276_gp_db
+
+External DB URL: postgres://cmpt_276_gp_db_user:JRdFP14fKeUyykP7rGZ3QCtQIL7tVuFW@dpg-cifjv9lph6el4umpd2mg-a.oregon-postgres.render.com/cmpt_276_gp_db
+
+PSQL Command: PGPASSWORD=JRdFP14fKeUyykP7rGZ3QCtQIL7tVuFW psql -h dpg-cifjv9lph6el4umpd2mg-a.oregon-postgres.render.com -U cmpt_276_gp_db_user cmpt_276_gp_db
