@@ -50,9 +50,10 @@ public class UserController {
         String username = newuser.get("username");
         String password = newuser.get("password");
         String userType = newuser.get("userType");
+        String email = newuser.get("email");
     
         // Create a new Users object with the retrieved data
-        Users newUser = new Users(username, password, userType);
+        Users newUser = new Users(username, password, userType, email);
         // Save the new Users object to the repository
         userRepo.save(newUser);
         response.setStatus(201);
@@ -83,6 +84,11 @@ public class UserController {
     
     @GetMapping("/users/login")
     public String showLoginPage() {
+        return "users/login";
+    }
+
+    @GetMapping("/users/logout") 
+    public String logout() {
         return "users/login";
     }
     

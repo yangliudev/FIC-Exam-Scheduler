@@ -11,6 +11,7 @@ public class Users {
     private String username;
     private String password;
     private String userType;
+    private String email;
 
     // Default constructor
     public Users(){
@@ -18,10 +19,11 @@ public class Users {
     }
 
     // Parameters constructor
-    public Users(String username, String password, String userType){
+    public Users(String username, String password, String userType, String email){
         this.username = username;
         this.password = password; 
         this.userType = userType;
+        this.email = email;
     }
 
     // Getters
@@ -37,6 +39,10 @@ public class Users {
         return userType;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     // Setters
     public void setUsername(String username){
         this.username = username;
@@ -48,5 +54,9 @@ public class Users {
 
     public void setUsertype(String userType){
         this.userType = userType;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
