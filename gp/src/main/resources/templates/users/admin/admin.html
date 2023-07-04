@@ -52,7 +52,10 @@
       <form action="/users/logout" method="get">
         <button type="submit" class="btn btn-primary">Logout</button>
       </form>
-      <h1>Welcome, Admin!</h1>
+      <form action="/users/edit" method="get">
+        <button type="submit" class="btn btn-primary">Edit Profile</button>
+      </form>
+      <h1 th:text="'Welcome, Admin ' + ${user.username} + '!'"></h1>
       <nav>
         <ul>
           <li><a href="/admin/dashboard">Dashboard</a></li>
