@@ -22,13 +22,13 @@ public class UserController {
     private Users current_user;
 
     @PostMapping("/users/login")
-    public String loginUser(@RequestParam Map<String, String> loginUser, HttpServletResponse response) {
+    public String loginUser(@RequestParam Map<String, String> loginUser, HttpServletResponse response, Model model) {
         String username = loginUser.get("username");
         String password = loginUser.get("password");
         Users user = userRepo.findByUsernameAndPassword(username, password);
         current_user = user;
 
-        if (user != null) {
+        if (user != null && user.getPassword().equals(password)) {
             String type = user.getUserType();
             if ("admin".equals(type)) {
                 // landing page for admins
@@ -39,11 +39,11 @@ public class UserController {
                 return "redirect:/users/proctor";
             }
         } 
-        
+       else {
+        model.addAttribute("error", "Invalid username or password.");
         return "users/login";
-       
-    
-        }
+    }
+}
     
     @PostMapping("/users/add")
     public String addUserString(@RequestParam Map<String, String> newuser, HttpServletResponse response) {

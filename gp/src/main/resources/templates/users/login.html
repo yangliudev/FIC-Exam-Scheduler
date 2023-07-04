@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -63,6 +63,7 @@
         <label>Password:</label><br />
         <input type="password" id="password" name="password" placeholder="Password" /><br />
         <div id="message" class="alert alert-danger" style="display: none;"></div>
+        <p th:text="${error}" class="alert alert-danger" th:style="'display:' + (${error} != null ? 'block' : 'none')" ></p>
         <button>Login</button>
       </form>
       <form action="/users/newUser" method="get">
