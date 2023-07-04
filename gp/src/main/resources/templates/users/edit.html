@@ -8,61 +8,98 @@
 </head>
 <body>
     <div class="container-fluid">
-		<div class="row justify-content-center">
-			<div class="col-md-4">
-				<h1 class="text-center mt-5 mb-4">Edit Profile</h1>
-				<form id="editUser" action="/users/userpage" th:object="${user}" method="post">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <h1 class="text-center mt-5 mb-4">Edit Profile</h1>
+                <form id="editUser" action="/users/userpage" th:object="${user}" method="post">
                     
-					<div class="mb-3">
-						
-						<input type="text" id="username" name="username" th:field="*{username}" class="form-control form-control-lg" 
-                            placeholder="Username">
-					</div>
-                    <!-- NEED MORE WORK FOR PASSWORD RESET (currently just shows password and lets u change) -->
                     <div class="mb-3">
-						<input type="text" id="password" name="password" th:field="*{password}" class="form-control form-control-lg" 
-                            placeholder="New Password">
-					</div>
-					<div class="mb-3">
-						
-						<input type="text" id="email" name="email" th:field="*{email}" class="form-control form-control-lg" 
-                            placeholder="Email">
-					</div>
-                    <div id="message" class="alert alert-danger" style="display: none;"></div>
-                    <div class="d-grid gap-2">
-                        <input class="btn btn-primary btn-success" type="submit" value="UPDATE"></input>
+                        <input type="text" id="username" name="username" th:field="*{username}" class="form-control form-control-lg" placeholder="Username">
                     </div>
 
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- jQuery library -->
+                    <div class="mb-3">
+                        <input type="text" id="email" name="email" th:field="*{email}" class="form-control form-control-lg" placeholder="Email">
+                    </div>
+
+                    <!-- Password Change Toggle -->
+                    <div class="mb-3">
+                        <button id="togglePasswordChange" type="button" class="btn btn-link">Change Password</button>
+                    </div>
+
+                    <!-- Password Change Fields (Initially Hidden) -->
+                    <div id="passwordChangeContainer" style="display: none;">
+                        <div class="mb-3">
+                            <input type="password" id="currentPassword" name="currentPassword" class="form-control form-control-lg" placeholder="Current Password">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" id="newPassword" name="newPassword" class="form-control form-control-lg" placeholder="New Password">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control form-control-lg" placeholder="Confirm New Password">
+                        </div>
+                    </div>
+                    
+                    <div id="message" class="alert alert-danger" style="display: none;"></div>
+                    
+                    <div class="d-grid gap-2">
+                        <input class="btn btn-primary btn-success" type="submit" value="UPDATE">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- JavaScript code -->
     <script>
-   $(document).ready(function() {
-    $('#editUser').submit(function(event) {
-      var name = $('#username').val();
-      var password = $('#password').val();
-      var email = $('#email').val();
-      if (!name || !password || !email) {
-        event.preventDefault(); // Prevent form submission
-        showMessage('Please fill out all fields.');
-        return;
-      }
-    });
+        $(document).ready(function() {
+            // Toggle password change fields
+            $('#togglePasswordChange').click(function() {
+                $('#passwordChangeContainer').toggle();
+            });
 
-    function showMessage(message) {
-      var messageElement = $('#message');
-      messageElement.text(message);
-      messageElement.show();
+            // Form submission
+            $('#editUser').submit(function(event) {
+                var name = $('#username').val();
+                var email = $('#email').val();
+                var currentPassword = $('#currentPassword').val();
+                var newPassword = $('#newPassword').val();
+                var confirmPassword = $('#confirmPassword').val();
 
-      setTimeout(function() {
-        messageElement.hide();
-      }, 3000);
-    }
-  });
+                if (!name || !email) {
+                    event.preventDefault();
+                    showMessage('Please fill out all required fields.');
+                    return;
+                }
+
+                if (currentPassword && newPassword && confirmPassword) {
+                    if (currentPassword === newPassword) {
+                        event.preventDefault();
+                        showMessage('Current password and new password cannot be the same.');
+                        return;
+                    }
+
+                    if (newPassword !== confirmPassword) {
+                        event.preventDefault();
+                        showMessage('New password and confirm password must match.');
+                        return;
+                    }
+                }
+            });
+
+            // Show message
+            function showMessage(message) {
+                var messageElement = $('#message');
+                messageElement.text(message);
+                messageElement.show();
+
+                setTimeout(function() {
+                    messageElement.hide();
+                }, 3000);
+            }
+        });
     </script>
 </body>
 </html>

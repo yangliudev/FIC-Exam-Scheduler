@@ -65,29 +65,39 @@ public class UserController {
         return "redirect:/users/login";
     }
 
-    
     @PostMapping("/users/userpage")
-	public String updateUser(@ModelAttribute("user") Users user) {
-        // set and save updated user info
-        Users update_user = current_user;
-        update_user.setUsername(user.getUsername());
-        update_user.setPassword(user.getPassword());
-        update_user.setEmail(user.getEmail());
-        userRepo.save(update_user);
-
-        String type = update_user.getUserType();
-
-        // return corresponding page based on the user type
-        if ("teacher".equals(type)) {
-            return "redirect:/users/teacher";
+    public String updateUser(@ModelAttribute("user") Users user,
+                             @RequestParam("currentPassword") String currentPassword,
+                             @RequestParam("newPassword") String newPassword,
+                             @RequestParam("confirmPassword") String confirmPassword,
+                             Model model) {
+        // Check if the current password matches the password in the database
+        if (currentPassword.equals(current_user.getPassword())) {
+            // Check if the new password and confirm password match
+            if (newPassword.equals(confirmPassword)) {
+                // Update the user's password
+                current_user.setPassword(newPassword);
+                userRepo.save(current_user);
+                // Redirect to the corresponding page based on the user type
+                String userType = current_user.getUserType();
+                if ("teacher".equals(userType)) {
+                    return "redirect:/users/teacher";
+                } else if ("admin".equals(userType)) {
+                    return "redirect:/users/admin";
+                } else {
+                    return "redirect:/users/proctor";
+                }
+            } else {
+                // Password and confirm password do not match
+                model.addAttribute("error", "New password and confirm password do not match.");
+            }
+        } else {
+            // Current password is incorrect
+            model.addAttribute("error", "Incorrect current password.");
         }
-        else if ("admin".equals(type)) {
-            return "redirect:/users/admin";
-        }
-        else {
-            return "redirect:/users/proctor";
-        }
-	}
+        // If there is an error, return to the edit page
+        return "users/edit";
+    }
 
     @GetMapping("/users/edit")
 	public String editStudentForm(Model model) {
