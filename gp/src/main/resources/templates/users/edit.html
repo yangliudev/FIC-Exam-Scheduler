@@ -11,7 +11,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-4">
 				<h1 class="text-center mt-5 mb-4">Edit Profile</h1>
-				<form action="/users/userpage" th:object="${user}" method="post">
+				<form id="editUser" action="/users/userpage" th:object="${user}" method="post">
                     
 					<div class="mb-3">
 						
@@ -28,7 +28,7 @@
 						<input type="text" id="email" name="email" th:field="*{email}" class="form-control form-control-lg" 
                             placeholder="Email">
 					</div>
-                    
+                    <div id="message" class="alert alert-danger" style="display: none;"></div>
                     <div class="d-grid gap-2">
                         <input class="btn btn-primary btn-success" type="submit" value="UPDATE"></input>
                     </div>
@@ -37,5 +37,32 @@
 			</div>
 		</div>
 	</div>
+	<!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- JavaScript code -->
+    <script>
+   $(document).ready(function() {
+    $('#editUser').submit(function(event) {
+      var name = $('#username').val();
+      var password = $('#password').val();
+      var email = $('#email').val();
+      if (!name || !password || !email) {
+        event.preventDefault(); // Prevent form submission
+        showMessage('Please fill out all fields.');
+        return;
+      }
+    });
+
+    function showMessage(message) {
+      var messageElement = $('#message');
+      messageElement.text(message);
+      messageElement.show();
+
+      setTimeout(function() {
+        messageElement.hide();
+      }, 3000);
+    }
+  });
+    </script>
 </body>
 </html>
