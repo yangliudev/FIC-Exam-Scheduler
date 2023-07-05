@@ -66,7 +66,7 @@ public class UserController {
     }
 
     @PostMapping("/users/userpage")
-    public String updateUser(@ModelAttribute("user") Users user,
+    public String updateUser(@ModelAttribute("user") Users user, @RequestParam("password") String password, 
                              @RequestParam("currentPassword") String currentPassword,
                              @RequestParam("newPassword") String newPassword,
                              @RequestParam("confirmPassword") String confirmPassword,

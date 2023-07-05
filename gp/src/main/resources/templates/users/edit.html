@@ -41,6 +41,7 @@
                         <div class="mb-3">
                             <input type="password" id="confirmPassword" name="confirmPassword" class="form-control form-control-lg" placeholder="Confirm New Password">
                         </div>
+                        <input type="hidden" id="password" name="password" th:value="${user.password}">
                     </div>
                     
                     <div id="message" class="alert alert-danger" style="display: none;"></div>
@@ -68,11 +69,12 @@
             $('#editUser').submit(function(event) {
                 var name = $('#username').val();
                 var email = $('#email').val();
+                var password = $('#password').val();
                 var currentPassword = $('#currentPassword').val();
                 var newPassword = $('#newPassword').val();
                 var confirmPassword = $('#confirmPassword').val();
 
-                if (!name || !email) {
+                if (!currentPassword || !newPassword || !confirmPassword) {
                     event.preventDefault();
                     showMessage('Please fill out all required fields.');
                     return;
@@ -84,7 +86,11 @@
                         showMessage('Current password and new password cannot be the same.');
                         return;
                     }
-
+                    if(currentPassword !== password){
+                        event.preventDefault();
+                        showMessage('Current password is incorrect.');
+                        return;
+                    }
                     if (newPassword !== confirmPassword) {
                         event.preventDefault();
                         showMessage('New password and confirm password must match.');
