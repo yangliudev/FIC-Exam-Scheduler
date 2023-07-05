@@ -49,13 +49,17 @@
   </head>
   <body>
     <div class="container">
-      <form action="/users/logout" method="get">
-        <button type="submit" class="btn btn-primary">Logout</button>
-      </form>
-      <form action="/users/edit" method="get">
-        <button type="submit" class="btn btn-primary">Edit Profile</button>
-      </form>
-      <h1 th:text="'Welcome, Proctor ' + ${user.username} + '!'"></h1>
+
+      <div class="btn-toolbar">
+        <form action="/users/logout" method="get">
+          <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
+        <form action="/users/edit" method="get">
+          <button type="submit" class="btn btn-primary" style="margin-left: 15px">Edit Profile</button>
+        </form>
+      </div>
+
+      <h1 style="margin-top: 15px;" th:text="'Welcome, Proctor ' + ${user.username} + '!'"></h1>
       <nav>
         <ul>
           <!-- <li><a href="/proctor/dashboard">Dashboard</a></li>

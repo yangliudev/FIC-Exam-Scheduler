@@ -13,12 +13,16 @@
                 <h1 class="text-center mt-5 mb-4">Edit Profile</h1>
                 <form id="editUser" action="/users/userpage" th:object="${user}" method="post">
                     
-                    <div class="mb-3">
-                        <input type="text" id="username" name="username" th:field="*{username}" class="form-control form-control-lg" placeholder="Username">
+                    <div class="mb-3" style=" display: inline-block; display: flex;">
+                        <h3>Username:</h3> 
+                        <p style="margin-left: 10px; font-size: 24px;" th:text="${user.username}"></p>
+                        <!-- <input type="text" id="username" name="username" th:field="*{username}" class="form-control form-control-lg" placeholder="Username"> -->
                     </div>
 
-                    <div class="mb-3">
-                        <input type="text" id="email" name="email" th:field="*{email}" class="form-control form-control-lg" placeholder="Email">
+                    <div class="mb-3"  style=" display: inline-block; display: flex;">
+                        <h3>Email:</h3> 
+                        <p style="margin-left: 10px; font-size: 24px;" th:text="${user.email}"></p>
+                        <!-- <input type="text" id="email" name="email" th:field="*{email}" class="form-control form-control-lg" placeholder="Email"> -->
                     </div>
 
                     <!-- Password Change Toggle -->
