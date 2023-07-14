@@ -13,7 +13,6 @@ import com.cmpt276_gp.gp.models.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 
 public class UserController {
