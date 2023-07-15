@@ -6,6 +6,8 @@ import java.time.LocalDateTime; //used for time
 @Entity
 @Table(name = "proctor")
 public class Proctor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uid;
     private LocalDateTime nonAvailableDates;
 

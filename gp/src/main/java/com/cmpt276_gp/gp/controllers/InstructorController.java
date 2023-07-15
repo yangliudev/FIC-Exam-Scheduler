@@ -22,20 +22,20 @@ public class InstructorController {
     // Controller for instructors
 
     // create request
-    @PostMapping(value = "")
     /*
+    @PostMapping(value = "")
      * create requests
      */
 
     // edits
-    @PostMapping(value ="")
     /*
+    @PostMapping(value ="")
      * edit requests
     */
 
     // deletes
-    @PostMapping(value = "")
     /*
+    @PostMapping(value = "")
      *  delete requests
     */
     

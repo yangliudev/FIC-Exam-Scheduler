@@ -5,6 +5,5 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 public interface ProctorRepository  extends JpaRepository<Proctor,Integer>{
-
-    Proctor findByNonAvailDates(LocalDateTime nonAvailableDates);
+    Proctor findByNonAvailableDates(LocalDateTime nonAvailableDates);
 }

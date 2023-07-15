@@ -24,14 +24,14 @@ public class ProctorControlller {
     // Controller for Proctors
 
     // create request
-    @PostMapping(value = "")
     /*
+    @PostMapping(value = "")
      * create requests
      */
 
      // edits
+     /*
     @PostMapping(value ="")
-    /*
      * edit requests
     */
 

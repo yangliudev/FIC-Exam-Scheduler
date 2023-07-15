@@ -23,20 +23,20 @@ public class AdminController {
     //controller for admin
 
     // get requests
-    @GetMapping(value ="")
     /*
+    @GetMapping(value ="")
      * get all requests
      */
 
     // edits
-    @PostMapping(value ="")
     /*
+    @PostMapping(value ="")
      * edit requests
     */
 
     // deletes
-    @PostMapping(value = "")
     /*
+    @PostMapping(value = "")
      *  delete requests
     */
     
