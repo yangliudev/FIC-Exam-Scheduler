@@ -22,6 +22,12 @@ public class InstructorController {
     // Controller for instructors
 
     // create request
+    @PostMapping("")
+    public String createRequest(@ModelAttribute Instructor instructor) {
+        // create the instructor exam request
+        instRepo.save(instructor);
+        return "redirect:/instructor";
+    }
     /*
     @PostMapping(value = "")
      * create requests
