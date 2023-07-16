@@ -11,6 +11,7 @@ public class Instructor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uid;
+    private String course_name;
     private int duration;
     private int section;
     private LocalDateTime firstChoice; // format (yyyy-mm-ddThh:mm:ss:ns)
@@ -36,8 +37,9 @@ public class Instructor {
     }
 
     // Parameters constructor
-    public Instructor(int duration, int section, LocalDateTime firstChoice, 
+    public Instructor(String course_name, int duration, int section, LocalDateTime firstChoice, 
                     LocalDateTime secondChoice, LocalDateTime thirdChoice){
+        this.course_name = course_name;
         this.duration = duration;
         this.section = section;
         this.firstChoice = firstChoice;
@@ -46,6 +48,10 @@ public class Instructor {
     }
 
     // Getters
+    public String getCourse_name() {
+        return course_name;
+    }
+    
     public int getDuration(int duration){
         return duration;
     }
@@ -68,6 +74,10 @@ public class Instructor {
         
 
     // Setters
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
     public void setDuration(int duration){
         this.duration = duration;
     }

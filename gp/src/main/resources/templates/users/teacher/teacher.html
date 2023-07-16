@@ -75,7 +75,7 @@
         </form>
       </div>
 
-      <h1 style="margin-top: 15px;" th:text="'Welcome, Teacher ' + ${user.username} + '!'"></h1>
+      <h1 style="margin-top: 15px;" th:text="'Welcome, Teacher ' + ${user.username}"></h1>
       <nav>
         <ul>
           <li><a href="/teacher/dashboard">Dashboard</a></li>
@@ -90,13 +90,19 @@
       <form class="request-form" action="/instructor/create" method="post">
         <!-- Duration and Section fields -->
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="course_name">Course Name:</label>
+              <input type="text" id="course_name" name="course_name" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-md-4">
             <div class="form-group">
               <label for="duration">Duration:</label>
               <input type="number" id="duration" name="duration" class="form-control" required>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label for="section">Section:</label>
               <input type="number" id="section" name="section" class="form-control" required>
@@ -126,10 +132,13 @@
         <button type="submit" class="btn btn-primary mt-3">Request Exam Slot</button>
       </form>
 
+      <h4 style="text-align: center; margin-bottom: 20px;">Exam Requests</h4>
+
       <!-- Request Table -->
       <table class="request-table table table-striped">
         <thead>
           <tr>
+            <th>Course</th>
             <th>Duration</th>
             <th>Section</th>
             <th>First Choice</th>
@@ -141,6 +150,7 @@
         <tbody>
           <!-- Iterate over the instructor requests and populate the table rows -->
           <tr th:each="request : ${requests}">
+            <td th:text="${request.course_name}"></td>
             <td th:text="${request.duration}"></td>
             <td th:text="${request.section}"></td>
             <td th:text="${request.firstChoice}"></td>
