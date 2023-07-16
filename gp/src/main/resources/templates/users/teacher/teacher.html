@@ -62,6 +62,30 @@
         background-color: #f8f9fa;
       }
     </style>
+    <script>
+      function submitForm() {
+      var courseName = document.getElementById('course_name').value;
+      var duration = document.getElementById('duration').value;
+      var section = document.getElementById('section').value;
+      var firstChoice = document.getElementById('firstChoice').value;
+      var secondChoice = document.getElementById('secondChoice').value;
+      var thirdChoice = document.getElementById('thirdChoice').value;
+
+      if (
+        courseName === '' ||
+        duration === '' ||
+        section === '' ||
+        firstChoice === '' ||
+        secondChoice === '' ||
+        thirdChoice === ''
+      ) {
+        alert('Please fill in all fields');
+        return false;
+      }
+
+      document.querySelector('.request-form').submit();
+    }
+    </script>
   </head>
   <body>
     <div class="container">
@@ -128,7 +152,7 @@
         </div>
         
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary mt-3">Request Exam Slot</button>
+        <button type="submit" class="btn btn-primary mt-3" onclick="submitForm()">Request Exam Slot</button>
       </form>
 
       <h4 style="text-align: center; margin-bottom: 20px;">Exam Requests</h4>
