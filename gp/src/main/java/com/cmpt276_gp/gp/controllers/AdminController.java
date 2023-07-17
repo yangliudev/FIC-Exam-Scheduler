@@ -23,6 +23,10 @@ public class AdminController {
     //controller for admin
 
     // get requests
+    @GetMapping("/admin/exams")
+    public String viewExamRequests() {
+        return "users/admin/instructorRequests";
+    }
     /*
     @GetMapping(value ="")
      * get all requests

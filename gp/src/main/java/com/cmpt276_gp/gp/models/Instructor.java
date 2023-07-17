@@ -14,9 +14,9 @@ public class Instructor {
     private String course_name;
     private int duration;
     private int section;
-    private LocalDateTime firstChoice; // format (yyyy-mm-ddThh:mm:ss:ns)
-    private LocalDateTime secondChoice; // format (yyyy-mm-ddThh:mm:ss:ns)
-    private LocalDateTime thirdChoice; // format (yyyy-mm-ddThh:mm:ss:ns)
+    private LocalDateTime first_choice; // format (yyyy-mm-ddThh:mm:ss:ns)
+    private LocalDateTime second_choice; // format (yyyy-mm-ddThh:mm:ss:ns)
+    private LocalDateTime third_choice; // format (yyyy-mm-ddThh:mm:ss:ns)
 
     /* 
     if you want to make get just the get just yyyy-mm-dd
@@ -37,14 +37,14 @@ public class Instructor {
     }
 
     // Parameters constructor
-    public Instructor(String course_name, int duration, int section, LocalDateTime firstChoice, 
-                    LocalDateTime secondChoice, LocalDateTime thirdChoice){
+    public Instructor(String course_name, int duration, int section, LocalDateTime first_choice, 
+                    LocalDateTime second_choice, LocalDateTime third_choice){
         this.course_name = course_name;
         this.duration = duration;
         this.section = section;
-        this.firstChoice = firstChoice;
-        this.secondChoice = secondChoice;
-        this.thirdChoice = thirdChoice;
+        this.first_choice = first_choice;
+        this.second_choice = second_choice;
+        this.third_choice = third_choice;
     }
 
     // Getters
@@ -52,24 +52,24 @@ public class Instructor {
         return course_name;
     }
     
-    public int getDuration(int duration){
+    public int getDuration(){
         return duration;
     }
 
-    public int getSection(int section){
+    public int getSection(){
         return section;
     }
 
-    public LocalDateTime getFirst(LocalDateTime firstChoice){
-        return firstChoice;
+    public LocalDateTime getFirst(){
+        return first_choice;
     }
 
-    public LocalDateTime getSecond(LocalDateTime secondChoice){
-        return secondChoice;
+    public LocalDateTime getSecond(){
+        return second_choice;
     }
 
-    public LocalDateTime getThird(LocalDateTime thirdChoice){
-        return thirdChoice;
+    public LocalDateTime getThird(){
+        return third_choice;
     }
         
 
@@ -86,15 +86,15 @@ public class Instructor {
         this.section = section;
     }
 
-    public void setFirst(LocalDateTime firstChoice){
-        this.firstChoice = firstChoice;
+    public void setFirst(LocalDateTime first_choice){
+        this.first_choice = first_choice;
     }
 
-    public void setSecond(LocalDateTime secondChoice){
-        this.secondChoice = secondChoice;
+    public void setSecond(LocalDateTime second_choice){
+        this.second_choice = second_choice;
     }
 
-    public void setThird(LocalDateTime thirdChoice){
-        this.thirdChoice = thirdChoice;
+    public void setThird(LocalDateTime third_choice){
+        this.third_choice = third_choice;
     }
 }

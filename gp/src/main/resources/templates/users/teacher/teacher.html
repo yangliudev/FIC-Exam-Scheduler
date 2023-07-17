@@ -102,7 +102,6 @@
       <h1 style="margin-top: 15px;" th:text="'Welcome, Teacher ' + ${user.username}"></h1>
       <nav>
         <ul>
-          <li><a href="/teacher/dashboard">Dashboard</a></li>
           <li><a href="/teacher/courses">My Courses</a></li>
           <li><a href="/teacher/exams">My Exams</a></li>
         </ul> 
@@ -172,13 +171,13 @@
         </thead>
         <tbody>
           <!-- Iterate over the instructor requests and populate the table rows -->
-          <tr th:each="request : ${requests}">
+          <tr th:each="request: ${requests}">
             <td th:text="${request.course_name}"></td>
             <td th:text="${request.duration}"></td>
             <td th:text="${request.section}"></td>
-            <td th:text="${request.firstChoice}"></td>
-            <td th:text="${request.secondChoice}"></td>
-            <td th:text="${request.thirdChoice}"></td>
+            <td th:text="${request.first_choice}"></td>
+            <td th:text="${request.second_choice}"></td>
+            <td th:text="${request.third_choice}"></td>
             <td>
               <a href="/instructor/{id}/edit" class="btn btn-primary btn-sm">Edit</a>
               <a href="/instructor/{id}/delete" class="btn btn-danger btn-sm">Delete</a>

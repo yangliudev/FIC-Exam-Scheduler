@@ -20,7 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class InstructorController {
     @Autowired
-    private InstructorRepository instRepo;
+    public InstructorRepository instRepo;
+
+    public InstructorRepository getInstRepo() {
+        return this.instRepo;
+    }
 
     // Controller for instructors
 
@@ -48,7 +52,15 @@ public class InstructorController {
         List<Instructor> requests = instRepo.findAll();
         model.addAttribute("requests", requests);
 
-        return "/users/teacher/teacher";
+        return "users/teacher/teacher";
+    }
+
+    @GetMapping("/teacher/exams")
+    public String showRequests(Model model) {
+        List<Instructor> requests = instRepo.findAll();
+        model.addAttribute("requests", requests);
+
+        return "users/teacher/requests";
     }
     /*
     @PostMapping(value = "")
