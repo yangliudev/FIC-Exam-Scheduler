@@ -26,15 +26,17 @@ public class Admin {
 
     // Parameters construtor
     public Admin(String courseName, LocalDateTime startTime, 
-                int section, int duration, int noOfRooms, int noProctors){
+                int section, int duration, int noOfRooms, int roomsAssigned, int noProctors){
         
         this.courseName = courseName;
         this.startTime = startTime;
         this.section = section;
         this.duration = duration;
         this.noOfRooms = noOfRooms;
+        this.roomsAssigned = roomsAssigned;
         this.noProctors = noProctors;
     }
+
 
     // Getters
     public String getCourseName(String courseName){

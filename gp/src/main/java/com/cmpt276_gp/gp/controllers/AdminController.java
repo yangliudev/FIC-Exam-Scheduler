@@ -33,5 +33,22 @@ public class AdminController {
         model.addAttribute("requests", requests);
         return "users/admin/instructorRequests";
     }
+    /*
+    @GetMapping(value ="")
+     * get all requests
+     */
 
+    // edits
+    /*
+    @PostMapping(value ="")
+     * edit requests
+    */
+
+    // deletes
+    /*
+    @PostMapping(value = "")
+     *  delete requests
+    */
+    
+    // others 
 }
