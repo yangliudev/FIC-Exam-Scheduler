@@ -43,13 +43,13 @@ public class InstructorController {
         return "redirect:/dashboard/teacher";
     }
 
-    @GetMapping("/dashboard/teacher")
-    public String showIntructorPage(Model model) {
-        List<Instructor> requests = instRepo.findAll();
-        model.addAttribute("requests", requests);
+    // @GetMapping("/dashboard/teacher")
+    // public String showIntructorPage(Model model) {
+    //     List<Instructor> requests = instRepo.findAll();
+    //     model.addAttribute("requests", requests);
 
-        return "users/teacher/teacher";
-    }
+    //     return "users/teacher/teacher";
+    // }
     
     /*
     @PostMapping(value = "")

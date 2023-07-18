@@ -116,11 +116,11 @@ public class UserController {
         return "users/admin/admin";
     }
 
-    @GetMapping("/users/teacher")
-    public String showTeacherPage(Model model) {
-        model.addAttribute("user", current_user);
-        return "users/teacher/teacher";
-    }
+    // @GetMapping("/users/teacher")
+    // public String showTeacherPage(Model model) {
+    //     model.addAttribute("user", current_user);
+    //     return "users/teacher/teacher";
+    // }
 
     @GetMapping("/users/proctor")
     public String showProctorPage(Model model) {
@@ -143,12 +143,12 @@ public class UserController {
         return "users/login";
     }
     
-    @GetMapping("/users/teacher/courses")
-    public String showTeacherCourses(Model model) {
-        // Retrieve the instructor requests for the current user
-        //List<Instructor> requests = instRepo.findByUser(current_user.getUser()); (need to make the FK attribute)
-        //model.addAttribute("requests", requests);
-        return "users/teacher/courses";
+    @GetMapping("/users/teacher")
+    public String showTeacherPage(Model model) {
+        model.addAttribute("user", current_user);
+        List<Instructor> teacherTable = instRepo.findAll();
+        model.addAttribute("teacherTable", teacherTable);
+        return "users/teacher/teacher";
     }
     
 

@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instructor Interface</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
     <!-- Custom CSS -->
     <style>
       body {
@@ -64,26 +67,26 @@
     </style>
     <script>
       function submitForm() {
-        var courseName = document.getElementById('course_name').value;
-        var duration = document.getElementById('duration').value;
-        var section = document.getElementById('section').value;
-        var firstChoice = document.getElementById('firstChoice').value;
-        var secondChoice = document.getElementById('secondChoice').value;
-        var thirdChoice = document.getElementById('thirdChoice').value;
+        var courseName = document.getElementById("course_name").value;
+        var duration = document.getElementById("duration").value;
+        var section = document.getElementById("section").value;
+        var firstChoice = document.getElementById("firstChoice").value;
+        var secondChoice = document.getElementById("secondChoice").value;
+        var thirdChoice = document.getElementById("thirdChoice").value;
 
         if (
-          courseName === '' ||
-          duration === '' ||
-          section === '' ||
-          firstChoice === '' ||
-          secondChoice === '' ||
-          thirdChoice === ''
+          courseName === "" ||
+          duration === "" ||
+          section === "" ||
+          firstChoice === "" ||
+          secondChoice === "" ||
+          thirdChoice === ""
         ) {
-          alert('Please fill in all fields');
+          alert("Please fill in all fields");
           return false;
         }
 
-        document.querySelector('.request-form').submit();
+        document.querySelector(".request-form").submit();
       }
     </script>
   </head>
@@ -94,11 +97,20 @@
           <button type="submit" class="btn btn-primary">Logout</button>
         </form>
         <form action="/users/edit" method="get">
-          <button type="submit" class="btn btn-primary" style="margin-left: 15px">Edit Profile</button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="margin-left: 15px"
+          >
+            Edit Profile
+          </button>
         </form>
       </div>
 
-      <h1 style="margin-top: 15px;" th:text="'Welcome, Teacher ' + ${user.username}"></h1>
+      <h1
+        style="margin-top: 15px"
+        th:text="'Welcome, Teacher ' + ${user.username}"
+      ></h1>
       <nav>
         <ul>
           <li><a href="/teacher/courses">My Courses</a></li>
@@ -107,7 +119,7 @@
       </nav>
 
       <h2>Teacher Dashboard</h2>
-      <h1 th:text="${user.uid}"></h1>
+      <!-- <h1 th:text="${user.uid}"></h1> -->
 
       <!-- Request Form -->
       <form class="request-form" action="/instructor/create" method="post">
@@ -116,19 +128,37 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="course_name">Course Name:</label>
-              <input type="text" id="course_name" name="course_name" class="form-control" required>
+              <input
+                type="text"
+                id="course_name"
+                name="course_name"
+                class="form-control"
+                required
+              />
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="duration">Duration (hours):</label>
-              <input type="number" id="duration" name="duration" class="form-control" required>
+              <input
+                type="number"
+                id="duration"
+                name="duration"
+                class="form-control"
+                required
+              />
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="section">Section:</label>
-              <input type="number" id="section" name="section" class="form-control" required>
+              <input
+                type="number"
+                id="section"
+                name="section"
+                class="form-control"
+                required
+              />
             </div>
           </div>
         </div>
@@ -138,27 +168,56 @@
           <div class="row">
             <div class="col-md-4">
               <label for="firstChoice">First Choice:</label>
-              <input type="datetime-local" id="firstChoice" name="firstChoice" class="form-control" required>
+              <input
+                type="datetime-local"
+                id="firstChoice"
+                name="firstChoice"
+                class="form-control"
+                required
+              />
             </div>
             <div class="col-md-4">
               <label for="secondChoice">Second Choice:</label>
-              <input type="datetime-local" id="secondChoice" name="secondChoice" class="form-control" required>
+              <input
+                type="datetime-local"
+                id="secondChoice"
+                name="secondChoice"
+                class="form-control"
+                required
+              />
             </div>
             <div class="col-md-4">
               <label for="thirdChoice">Third Choice:</label>
-              <input type="datetime-local" id="thirdChoice" name="thirdChoice" class="form-control" required>
+              <input
+                type="datetime-local"
+                id="thirdChoice"
+                name="thirdChoice"
+                class="form-control"
+                required
+              />
             </div>
           </div>
         </div>
 
         <!-- Instructor Username (hidden field) -->
-        <input type="hidden" id="instructorUser" name="instructorUser" th:value="${user.username}" />
+        <input
+          type="hidden"
+          id="instructorUser"
+          name="instructorUser"
+          th:value="${user.username}"
+        />
 
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary mt-3" onclick="submitForm()">Request Exam Slot</button>
+        <button
+          type="submit"
+          class="btn btn-primary mt-3"
+          onclick="submitForm()"
+        >
+          Request Exam Slot
+        </button>
       </form>
 
-      <h4 style="text-align: center; margin-bottom: 20px;">My Exam Requests</h4>
+      <h4 style="text-align: center; margin-bottom: 20px">My Exam Requests</h4>
 
       <!-- Request Table -->
       <table class="request-table table table-striped">
@@ -174,17 +233,20 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Iterate over the instructor requests and populate the table rows -->
-          <tr th:each="request: ${requests}">
-            <td th:text="${request.course_name}"></td>
-            <td th:text="${request.duration}"></td>
-            <td th:text="${request.section}"></td>
-            <!-- <td th:text="${request.first_choice}"></td>
-            <td th:text="${request.second_choice}"></td>
-            <td th:text="${request.third_choice}"></td> -->
+          <tr th:each="teacher: ${teacherTable}">
+            <td th:text="${teacher.course_name}"></td>
+            <td th:text="${teacher.duration}"></td>
+            <td th:text="${teacher.section}"></td>
+            <td th:text="${teacher.first_choice}"></td>
+            <td th:text="${teacher.second_choice}"></td>
+            <td th:text="${teacher.third_choice}"></td>
             <td>
-              <a href="/instructor/{id}/edit" class="btn btn-primary btn-sm">Edit</a>
-              <a href="/instructor/{id}/delete" class="btn btn-danger btn-sm">Delete</a>
+              <a href="/instructor/{id}/edit" class="btn btn-primary btn-sm"
+                >Edit</a
+              >
+              <a href="/instructor/{id}/delete" class="btn btn-danger btn-sm"
+                >Delete</a
+              >
             </td>
           </tr>
         </tbody>
