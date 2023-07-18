@@ -27,6 +27,10 @@ public class Users {
     }
 
     // Getters
+    public int getUid() {
+        return uid;
+    }
+    
     public String getUsername(){
         return username;
     }
