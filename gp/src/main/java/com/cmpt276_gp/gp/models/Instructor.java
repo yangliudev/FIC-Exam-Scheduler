@@ -80,13 +80,14 @@ public class Instructor {
 
     // Parameters constructor
     public Instructor(String course_name, int duration, int section, LocalDateTime first_choice, 
-                    LocalDateTime second_choice, LocalDateTime third_choice){
+                    LocalDateTime second_choice, LocalDateTime third_choice, String instructorUser){
         this.course_name = course_name;
         this.duration = duration;
         this.section = section;
         this.first_choice = first_choice;
         this.second_choice = second_choice;
         this.third_choice = third_choice;
+        this.instructorUser = instructorUser;
     }
 
     // Getters

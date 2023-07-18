@@ -32,9 +32,11 @@ public class InstructorController {
         LocalDateTime firstChoice = LocalDateTime.parse(instructor.get("firstChoice"));
         LocalDateTime secondChoice = LocalDateTime.parse(instructor.get("secondChoice"));
         LocalDateTime thirdChoice = LocalDateTime.parse(instructor.get("thirdChoice"));
+        String instructorUser = instructor.get("instructorUser"); 
+
 
         // create the instructor exam request
-        Instructor newRequest = new Instructor(course_name, duration, section, firstChoice, secondChoice, thirdChoice);
+        Instructor newRequest = new Instructor(course_name, duration, section, firstChoice, secondChoice, thirdChoice, instructorUser);
         instRepo.save(newRequest);
 
         // still need to fix routing since teacher.html cannot read user model

@@ -64,32 +64,31 @@
     </style>
     <script>
       function submitForm() {
-      var courseName = document.getElementById('course_name').value;
-      var duration = document.getElementById('duration').value;
-      var section = document.getElementById('section').value;
-      var firstChoice = document.getElementById('firstChoice').value;
-      var secondChoice = document.getElementById('secondChoice').value;
-      var thirdChoice = document.getElementById('thirdChoice').value;
+        var courseName = document.getElementById('course_name').value;
+        var duration = document.getElementById('duration').value;
+        var section = document.getElementById('section').value;
+        var firstChoice = document.getElementById('firstChoice').value;
+        var secondChoice = document.getElementById('secondChoice').value;
+        var thirdChoice = document.getElementById('thirdChoice').value;
 
-      if (
-        courseName === '' ||
-        duration === '' ||
-        section === '' ||
-        firstChoice === '' ||
-        secondChoice === '' ||
-        thirdChoice === ''
-      ) {
-        alert('Please fill in all fields');
-        return false;
+        if (
+          courseName === '' ||
+          duration === '' ||
+          section === '' ||
+          firstChoice === '' ||
+          secondChoice === '' ||
+          thirdChoice === ''
+        ) {
+          alert('Please fill in all fields');
+          return false;
+        }
+
+        document.querySelector('.request-form').submit();
       }
-
-      document.querySelector('.request-form').submit();
-    }
     </script>
   </head>
   <body>
     <div class="container">
-
       <div class="btn-toolbar">
         <form action="/users/logout" method="get">
           <button type="submit" class="btn btn-primary">Logout</button>
@@ -104,7 +103,7 @@
         <ul>
           <li><a href="/teacher/courses">My Courses</a></li>
           <li><a href="/teacher/exams">My Exams</a></li>
-        </ul> 
+        </ul>
       </nav>
 
       <h2>Teacher Dashboard</h2>
@@ -130,8 +129,9 @@
               <label for="section">Section:</label>
               <input type="number" id="section" name="section" class="form-control" required>
             </div>
+          </div>
         </div>
-        
+
         <!-- Choices fields -->
         <div class="form-group">
           <div class="row">
@@ -149,7 +149,12 @@
             </div>
           </div>
         </div>
-        
+
+        <!-- Instructor Username (hidden field) -->
+        <input type="hidden" id="instructorUser" name="instructorUser" th:value="${user.username}" />
+
+
+
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary mt-3" onclick="submitForm()">Request Exam Slot</button>
       </form>
