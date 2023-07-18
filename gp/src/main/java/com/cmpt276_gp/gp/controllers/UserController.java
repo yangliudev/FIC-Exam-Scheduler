@@ -143,5 +143,13 @@ public class UserController {
         return "users/login";
     }
     
+    @GetMapping("/users/teacher/courses")
+    public String showTeacherCourses(Model model) {
+        // Retrieve the instructor requests for the current user
+        //List<Instructor> requests = instRepo.findByUser(current_user.getUser()); (need to make the FK attribute)
+        //model.addAttribute("requests", requests);
+        return "users/teacher/courses";
+    }
+    
 
 }

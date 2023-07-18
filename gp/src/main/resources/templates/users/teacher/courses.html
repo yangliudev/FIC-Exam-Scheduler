@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Courses</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            margin-top: 50px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+        }
+        th {
+            background-color: #f8f9fa;
+        }
+        .btn-toolbar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+        .btn {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="btn-toolbar">
+            <form action="/users/logout" method="get">
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
+            <form action="/users/edit" method="get">
+                <button type="submit" class="btn btn-primary">Edit Profile</button>
+            </form>
+        </div>
+        <h1>Teacher Courses</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Duration</th>
+                    <th>Section</th>
+                    <th>First Choice</th>
+                    <th>Second Choice</th>
+                    <th>Third Choice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate over the instructor requests and populate the table rows -->
+                <tr th:each="request: ${requests}">
+                    <td th:text="${request.courseName}"></td>
+                    <td th:text="${request.duration}"></td>
+                    <td th:text="${request.section}"></td>
+                    <td th:text="${request.firstChoice}"></td>
+                    <td th:text="${request.secondChoice}"></td>
+                    <td th:text="${request.thirdChoice}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
