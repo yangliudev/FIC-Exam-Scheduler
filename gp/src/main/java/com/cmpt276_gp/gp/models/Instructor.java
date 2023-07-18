@@ -17,6 +17,8 @@ public class Instructor {
     private LocalDateTime first_choice; // format (yyyy-mm-ddThh:mm:ss:ns)
     private LocalDateTime second_choice; // format (yyyy-mm-ddThh:mm:ss:ns)
     private LocalDateTime third_choice; // format (yyyy-mm-ddThh:mm:ss:ns)
+    private String instructorUser;
+
 
     /* 
     if you want to make get just the get just yyyy-mm-dd
@@ -30,6 +32,46 @@ public class Instructor {
             }
     */
 
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public LocalDateTime getFirst_choice() {
+        return first_choice;
+    }
+
+    public void setFirst_choice(LocalDateTime first_choice) {
+        this.first_choice = first_choice;
+    }
+
+    public LocalDateTime getSecond_choice() {
+        return second_choice;
+    }
+
+    public void setSecond_choice(LocalDateTime second_choice) {
+        this.second_choice = second_choice;
+    }
+
+    public LocalDateTime getThird_choice() {
+        return third_choice;
+    }
+
+    public void setThird_choice(LocalDateTime third_choice) {
+        this.third_choice = third_choice;
+    }
+
+    public String getinstructorUser() {
+        return instructorUser;
+    }
+
+    public void setinstructorUser(String instructorUser) {
+        this.instructorUser = instructorUser;
+    }
 
     // Default constructor
     public Instructor(){
@@ -96,5 +138,13 @@ public class Instructor {
 
     public void setThird(LocalDateTime third_choice){
         this.third_choice = third_choice;
+    }
+
+    public String getInstructorUser() {
+        return instructorUser;
+    }
+
+    public void setInstructorUser(String instructorUser) {
+        this.instructorUser = instructorUser;
     }
 }
