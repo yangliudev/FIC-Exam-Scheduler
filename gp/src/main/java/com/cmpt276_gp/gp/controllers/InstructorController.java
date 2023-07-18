@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.cmpt276_gp.gp.models.Instructor;
 import com.cmpt276_gp.gp.models.InstructorRepository;
-import com.cmpt276_gp.gp.controllers.UserController;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,11 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class InstructorController {
     @Autowired
     public InstructorRepository instRepo;
-
-    public InstructorRepository getInstRepo() {
-        return this.instRepo;
-    }
-
     // Controller for instructors
 
     // create request
@@ -53,14 +47,6 @@ public class InstructorController {
         model.addAttribute("requests", requests);
 
         return "users/teacher/teacher";
-    }
-
-    @GetMapping("/teacher/exams")
-    public String showRequests(Model model) {
-        List<Instructor> requests = instRepo.findAll();
-        model.addAttribute("requests", requests);
-
-        return "users/teacher/requests";
     }
     /*
     @PostMapping(value = "")

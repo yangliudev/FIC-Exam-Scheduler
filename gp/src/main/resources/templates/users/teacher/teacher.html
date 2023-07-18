@@ -154,7 +154,7 @@
         <button type="submit" class="btn btn-primary mt-3" onclick="submitForm()">Request Exam Slot</button>
       </form>
 
-      <h4 style="text-align: center; margin-bottom: 20px;">Exam Requests</h4>
+      <h4 style="text-align: center; margin-bottom: 20px;">My Exam Requests</h4>
 
       <!-- Request Table -->
       <table class="request-table table table-striped">
@@ -175,9 +175,9 @@
             <td th:text="${request.course_name}"></td>
             <td th:text="${request.duration}"></td>
             <td th:text="${request.section}"></td>
-            <td th:text="${request.first_choice}"></td>
+            <!-- <td th:text="${request.first_choice}"></td>
             <td th:text="${request.second_choice}"></td>
-            <td th:text="${request.third_choice}"></td>
+            <td th:text="${request.third_choice}"></td> -->
             <td>
               <a href="/instructor/{id}/edit" class="btn btn-primary btn-sm">Edit</a>
               <a href="/instructor/{id}/delete" class="btn btn-danger btn-sm">Delete</a>
