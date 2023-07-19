@@ -40,7 +40,7 @@ public class InstructorController {
         instRepo.save(newRequest);
 
         // still need to fix routing since teacher.html cannot read user model
-        return "redirect:/dashboard/teacher";
+        return "redirect:/users/teacher";
     }
 
     // @GetMapping("/dashboard/teacher")
