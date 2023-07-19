@@ -116,11 +116,13 @@ public class UserController {
         return "users/admin/admin";
     }
 
-    // @GetMapping("/users/teacher")
-    // public String showTeacherPage(Model model) {
-    //     model.addAttribute("user", current_user);
-    //     return "users/teacher/teacher";
-    // }
+    @GetMapping("/users/teacher")
+    public String showTeacherPage(Model model) {
+        model.addAttribute("user", current_user);
+        List<Instructor> teacherTable = instRepo.findAll();
+        model.addAttribute("teacherTable", teacherTable);
+        return "users/teacher/teacher";
+    }
 
     @GetMapping("/users/proctor")
     public String showProctorPage(Model model) {
@@ -143,13 +145,4 @@ public class UserController {
         return "users/login";
     }
     
-    @GetMapping("/users/teacher")
-    public String showTeacherPage(Model model) {
-        model.addAttribute("user", current_user);
-        List<Instructor> teacherTable = instRepo.findAll();
-        model.addAttribute("teacherTable", teacherTable);
-        return "users/teacher/teacher";
-    }
-    
-
 }

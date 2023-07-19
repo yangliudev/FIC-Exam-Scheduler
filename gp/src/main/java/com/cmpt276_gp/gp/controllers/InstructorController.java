@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.cmpt276_gp.gp.models.Instructor;
 import com.cmpt276_gp.gp.models.InstructorRepository;
+import com.cmpt276_gp.gp.models.Users;
+import com.cmpt276_gp.gp.models.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,6 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class InstructorController {
     @Autowired
     public InstructorRepository instRepo;
+
+    @Autowired
+    public UserRepository userRepo;
+
+    public Users current_user;
     // Controller for instructors
 
     // create request
@@ -33,6 +40,7 @@ public class InstructorController {
         LocalDateTime secondChoice = LocalDateTime.parse(instructor.get("secondChoice"));
         LocalDateTime thirdChoice = LocalDateTime.parse(instructor.get("thirdChoice"));
         String instructorUser = instructor.get("instructorUser"); 
+        current_user = userRepo.findByUsername(instructorUser);
 
 
         // create the instructor exam request
@@ -43,13 +51,13 @@ public class InstructorController {
         return "redirect:/dashboard/teacher";
     }
 
-    // @GetMapping("/dashboard/teacher")
-    // public String showIntructorPage(Model model) {
-    //     List<Instructor> requests = instRepo.findAll();
-    //     model.addAttribute("requests", requests);
-
-    //     return "users/teacher/teacher";
-    // }
+    @GetMapping("/dashboard/teacher")
+    public String showIntructorPage(Model model) {
+        model.addAttribute("user", current_user);
+        List<Instructor> teacherTable = instRepo.findAll();
+        model.addAttribute("teacherTable", teacherTable);
+        return "users/teacher/teacher";
+    }
     
     /*
     @PostMapping(value = "")
