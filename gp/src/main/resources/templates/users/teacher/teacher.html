@@ -229,25 +229,28 @@
             <th>First Choice</th>
             <th>Second Choice</th>
             <th>Third Choice</th>
-            <th>Action</th>
+            <!-- <th>Action</th> -->
           </tr>
         </thead>
         <tbody>
-          <tr th:each="teacher: ${teacherTable}">
+          <tr
+            th:each="teacher: ${teacherTable}"
+            th:if="${teacher.instructorUser} == ${user.username}"
+          >
             <td th:text="${teacher.course_name}"></td>
             <td th:text="${teacher.duration}"></td>
             <td th:text="${teacher.section}"></td>
             <td th:text="${teacher.first_choice}"></td>
             <td th:text="${teacher.second_choice}"></td>
             <td th:text="${teacher.third_choice}"></td>
-            <td>
+            <!-- <td>
               <a href="/instructor/{id}/edit" class="btn btn-primary btn-sm"
                 >Edit</a
               >
               <a href="/instructor/{id}/delete" class="btn btn-danger btn-sm"
                 >Delete</a
               >
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>
