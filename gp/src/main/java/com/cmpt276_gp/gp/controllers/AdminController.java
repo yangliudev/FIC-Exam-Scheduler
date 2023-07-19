@@ -29,8 +29,8 @@ public class AdminController {
 
     @GetMapping("/admin/exams")
     public String viewExamRequests(Model model) {
-        List<Instructor> requests = instRepo.findAll();
-        model.addAttribute("requests", requests);
+        List<Instructor> teacherTable = instRepo.findAll();
+        model.addAttribute("teacherTable", teacherTable);
         return "users/admin/instructorRequests";
     }
     /*
