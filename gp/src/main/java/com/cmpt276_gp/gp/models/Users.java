@@ -25,7 +25,6 @@ public class Users {
         this.userType = userType;
         this.email = email;
     }
-
     // Getters
     public int getUid() {
         return uid;
