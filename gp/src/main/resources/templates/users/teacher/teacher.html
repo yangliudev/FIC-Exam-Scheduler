@@ -64,6 +64,9 @@
       .request-table th {
         background-color: #f8f9fa;
       }
+      .actionButton {
+        width: 70px;
+      }
     </style>
     <script>
       function submitForm() {
@@ -109,17 +112,10 @@
 
       <h1
         style="margin-top: 15px"
-        th:text="'Welcome, Teacher ' + ${user.username}"
+        th:text="'Welcome, Instructor ' + ${user.username}"
       ></h1>
-      <!-- <nav>
-        <ul>
-          <li><a href="/teacher/courses">My Courses</a></li>
-          <li><a href="/teacher/exams">My Exams</a></li>
-        </ul>
-      </nav> -->
 
       <h2>Teacher Dashboard</h2>
-      <!-- <h1 th:text="${user.uid}"></h1> -->
 
       <!-- Request Form -->
       <form class="request-form" action="/instructor/create" method="post">
@@ -220,16 +216,16 @@
       <h4 style="text-align: center; margin-bottom: 20px">My Exam Requests</h4>
 
       <!-- Request Table -->
-      <table class="request-table table table-striped">
-        <thead>
+      <table class="table table-striped table-bordered">
+        <thead class="table-dark">
           <tr>
-            <th>Course</th>
-            <th>Duration</th>
-            <th>Section</th>
-            <th>First Choice</th>
-            <th>Second Choice</th>
-            <th>Third Choice</th>
-            <!-- <th>Action</th> -->
+            <th class="text-center">Course</th>
+            <th class="text-center">Duration</th>
+            <th class="text-center">Section</th>
+            <th class="text-center">First Choice</th>
+            <th class="text-center">Second Choice</th>
+            <th class="text-center">Third Choice</th>
+            <th class="text-center">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -237,20 +233,16 @@
             th:each="teacher: ${teacherTable}"
             th:if="${teacher.instructorUser} == ${user.username}"
           >
-            <td th:text="${teacher.course_name}"></td>
-            <td th:text="${teacher.duration}"></td>
-            <td th:text="${teacher.section}"></td>
-            <td th:text="${teacher.first_choice}"></td>
-            <td th:text="${teacher.second_choice}"></td>
-            <td th:text="${teacher.third_choice}"></td>
-            <!-- <td>
-              <a href="/instructor/{id}/edit" class="btn btn-primary btn-sm"
-                >Edit</a
-              >
-              <a href="/instructor/{id}/delete" class="btn btn-danger btn-sm"
-                >Delete</a
-              >
-            </td> -->
+            <td class="text-center" th:text="${teacher.course_name}"></td>
+            <td class="text-center" th:text="${teacher.duration}"></td>
+            <td class="text-center" th:text="${teacher.section}"></td>
+            <td class="text-center" th:text="${teacher.first_choice}"></td>
+            <td class="text-center" th:text="${teacher.second_choice}"></td>
+            <td class="text-center" th:text="${teacher.third_choice}"></td>
+            <td class="text-center">
+              <a th:href="@{/request/{uid}(uid=${teacher.uid})}" class="btn btn-primary actionButton">Edit</a>
+              <a style="margin-top: 7px;" th:href="@{/request/delete/{uid}(uid=${teacher.uid})}" class="btn btn-danger actionButton">Delete</a>
+            </td>
           </tr>
         </tbody>
       </table>

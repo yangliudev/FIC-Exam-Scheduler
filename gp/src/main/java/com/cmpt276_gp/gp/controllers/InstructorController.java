@@ -42,39 +42,41 @@ public class InstructorController {
         String instructorUser = instructor.get("instructorUser"); 
         current_user = userRepo.findByUsername(instructorUser);
 
-
         // create the instructor exam request
         Instructor newRequest = new Instructor(course_name, duration, section, firstChoice, secondChoice, thirdChoice, instructorUser);
         instRepo.save(newRequest);
 
-        // still need to fix routing since teacher.html cannot read user model
         return "redirect:/users/teacher";
     }
 
-    @GetMapping("/dashboard/teacher")
-    public String showIntructorPage(Model model) {
-        model.addAttribute("user", current_user);
-        List<Instructor> teacherTable = instRepo.findAll();
-        model.addAttribute("teacherTable", teacherTable);
-        return "users/teacher/teacher";
+    // delete a request from table
+    @GetMapping("/request/delete/{uid}")
+    public String deleteStudent(@PathVariable Integer uid) {
+        instRepo.deleteById(uid);
+        return "redirect:/users/teacher";
     }
-    
-    /*
-    @PostMapping(value = "")
-     * create requests
-     */
 
-    // edits
-    /*
-    @PostMapping(value ="")
-     * edit requests
-    */
+    // edit request attributes
+    @GetMapping("/request/{uid}")
+	public String editRequestForm(@PathVariable Integer uid, Model model) {
+		model.addAttribute("teacher", instRepo.findById(uid).get());
+		return "users/teacher/editRequest";
+	}
 
-    // deletes
-    /*
-    @PostMapping(value = "")
-     *  delete requests
-    */
-    
-    // others 
+    // save updated request information
+    @PostMapping("/request/{uid}")
+	public String updateRequest(@PathVariable Integer uid, @ModelAttribute("teacher") Instructor teacher) {
+	
+		Instructor newRequest = instRepo.findById(uid).get();
+        newRequest.setCourse_name(teacher.getCourse_name());
+        newRequest.setDuration(teacher.getDuration());
+        newRequest.setSection(teacher.getSection());
+        newRequest.setFirst_choice(teacher.getFirst_choice());
+        newRequest.setSecond_choice(teacher.getSecond_choice());
+        newRequest.setThird_choice(teacher.getThird_choice());
+		
+		instRepo.save(newRequest);
+		return "redirect:/users/teacher";		
+	}
+
 }
