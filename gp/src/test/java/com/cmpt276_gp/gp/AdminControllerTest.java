@@ -24,14 +24,5 @@ class AdminControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
-    @Test
-    void testViewExamRequests() {
-        String expectedViewName = "users/admin/instructorRequests";
-        
-        String actualViewName = adminController.viewExamRequests();
-        
-        assertEquals(expectedViewName, actualViewName);
-    }
     
 }

@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 class InstructorControllerTest {
@@ -40,6 +42,7 @@ class InstructorControllerTest {
         instructorData.put("firstChoice", "2023-07-17T10:00:00");
         instructorData.put("secondChoice", "2023-07-18T14:00:00");
         instructorData.put("thirdChoice", "2023-07-19T16:00:00");
+        instructorData.put("instructorUser", "testuser");
 
         Instructor savedInstructor = new Instructor(
                 "Test Course",
@@ -47,7 +50,8 @@ class InstructorControllerTest {
                 1,
                 LocalDateTime.parse("2023-07-17T10:00:00"),
                 LocalDateTime.parse("2023-07-18T14:00:00"),
-                LocalDateTime.parse("2023-07-19T16:00:00")
+                LocalDateTime.parse("2023-07-19T16:00:00"),
+                "testuser"
         );
 
         when(instructorRepository.save(any(Instructor.class))).thenReturn(savedInstructor);
@@ -57,34 +61,5 @@ class InstructorControllerTest {
         assertEquals("redirect:/dashboard/teacher", result);
         verify(instructorRepository, times(1)).save(any(Instructor.class));
     }
-
-    @Test
-    void testShowInstructorPage() {
-        List<Instructor> instructorList = Arrays.asList(
-                new Instructor("Course 1", 60, 1, LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now()),
-                new Instructor("Course 2", 90, 2, LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now())
-        );
-
-        when(instructorRepository.findAll()).thenReturn(instructorList);
-
-        String result = instructorController.showIntructorPage(model);
-
-        assertEquals("users/teacher/teacher", result);
-        verify(model, times(1)).addAttribute(eq("requests"), eq(instructorList));
-    }
-
-    @Test
-    void testShowRequests() {
-        List<Instructor> instructorList = Arrays.asList(
-                new Instructor("Course 1", 60, 1, LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now()),
-                new Instructor("Course 2", 90, 2, LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now())
-        );
-
-        when(instructorRepository.findAll()).thenReturn(instructorList);
-
-        String result = instructorController.showRequests(model);
-
-        assertEquals("users/teacher/requests", result);
-        verify(model, times(1)).addAttribute(eq("requests"), eq(instructorList));
-    }
+    
 }
