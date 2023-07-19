@@ -32,47 +32,6 @@ public class Instructor {
             }
     */
 
-
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
-
-    public LocalDateTime getFirst_choice() {
-        return first_choice;
-    }
-
-    public void setFirst_choice(LocalDateTime first_choice) {
-        this.first_choice = first_choice;
-    }
-
-    public LocalDateTime getSecond_choice() {
-        return second_choice;
-    }
-
-    public void setSecond_choice(LocalDateTime second_choice) {
-        this.second_choice = second_choice;
-    }
-
-    public LocalDateTime getThird_choice() {
-        return third_choice;
-    }
-
-    public void setThird_choice(LocalDateTime third_choice) {
-        this.third_choice = third_choice;
-    }
-
-    public String getinstructorUser() {
-        return instructorUser;
-    }
-
-    public void setinstructorUser(String instructorUser) {
-        this.instructorUser = instructorUser;
-    }
-
     // Default constructor
     public Instructor(){
 
@@ -91,6 +50,10 @@ public class Instructor {
     }
 
     // Getters
+    public int getUid() {
+        return uid;
+    }
+
     public String getCourse_name() {
         return course_name;
     }
@@ -103,16 +66,20 @@ public class Instructor {
         return section;
     }
 
-    public LocalDateTime getFirst(){
+    public LocalDateTime getFirst_choice() {
         return first_choice;
     }
 
-    public LocalDateTime getSecond(){
+    public LocalDateTime getSecond_choice() {
         return second_choice;
     }
 
-    public LocalDateTime getThird(){
+    public LocalDateTime getThird_choice() {
         return third_choice;
+    }
+
+    public String getInstructorUser() {
+        return instructorUser;
     }
         
 
@@ -129,20 +96,16 @@ public class Instructor {
         this.section = section;
     }
 
-    public void setFirst(LocalDateTime first_choice){
+    public void setFirst_choice(LocalDateTime first_choice) {
         this.first_choice = first_choice;
     }
 
-    public void setSecond(LocalDateTime second_choice){
+    public void setSecond_choice(LocalDateTime second_choice) {
         this.second_choice = second_choice;
     }
 
-    public void setThird(LocalDateTime third_choice){
+    public void setThird_choice(LocalDateTime third_choice) {
         this.third_choice = third_choice;
-    }
-
-    public String getInstructorUser() {
-        return instructorUser;
     }
 
     public void setInstructorUser(String instructorUser) {
