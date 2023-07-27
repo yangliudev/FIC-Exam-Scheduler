@@ -13,15 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.cmpt276_gp.gp.models.Admin;
 import com.cmpt276_gp.gp.models.AdminRepository;
-<<<<<<< HEAD
-import com.cmpt276_gp.gp.models.InstructorRepository;
-import com.cmpt276_gp.gp.models.UserRepository;
-=======
 import com.cmpt276_gp.gp.models.Instructor;
 import com.cmpt276_gp.gp.models.InstructorRepository;
 import com.cmpt276_gp.gp.models.UserRepository;
 import com.cmpt276_gp.gp.models.Users;
->>>>>>> f4dc006fe6dc27069be3d19b0536bb6fb0aa8733
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,22 +27,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
     @Autowired
     private AdminRepository adminRepo;
-<<<<<<< HEAD
-    private InstructorRepository instRepo;
-    private UserRepository userRepo;
-
 
     @GetMapping("/admin/dashboard")
     public String showDashboard(Model model){
         return "users/admin/admin";
     }
-=======
     @Autowired
     public InstructorRepository instRepo;
     @Autowired
     private UserRepository userRepo;
     public Users current_user;
->>>>>>> f4dc006fe6dc27069be3d19b0536bb6fb0aa8733
     //controller for admin
 
     @GetMapping("/admin/exams")

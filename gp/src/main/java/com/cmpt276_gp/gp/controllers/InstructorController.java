@@ -45,7 +45,6 @@ public class InstructorController {
         // create the instructor exam request
         Instructor newRequest = new Instructor(course_name, duration, section, firstChoice, secondChoice, thirdChoice, instructorUser);
         instRepo.save(newRequest);
-<<<<<<< HEAD
         
         // still need to fix routing since teacher.html cannot read user model
         return "redirect:/dashboard/teacher";
@@ -57,17 +56,6 @@ public class InstructorController {
         model.addAttribute("requests", requests);
 
         return "redirect:/dashboard/teacher";
-=======
-
-        return "redirect:/users/teacher";
-    }
-
-    // delete a request from table
-    @GetMapping("/request/delete/{uid}")
-    public String deleteStudent(@PathVariable Integer uid) {
-        instRepo.deleteById(uid);
-        return "redirect:/users/teacher";
->>>>>>> f4dc006fe6dc27069be3d19b0536bb6fb0aa8733
     }
 
     // edit request attributes
