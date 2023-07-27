@@ -23,7 +23,7 @@ public class Proctor {
     }
 
     // Getters
-    public LocalDateTime getNonAvailableDates(LocalDateTime nonAvailableDates){
+    public LocalDateTime getNonAvailableDates(){
         return nonAvailableDates;
     }
 

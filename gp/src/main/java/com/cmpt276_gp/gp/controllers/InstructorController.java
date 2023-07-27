@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.cmpt276_gp.gp.models.Instructor;
 import com.cmpt276_gp.gp.models.InstructorRepository;
-import com.cmpt276_gp.gp.controllers.UserController;
+import com.cmpt276_gp.gp.models.Users;
+import com.cmpt276_gp.gp.models.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,8 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class InstructorController {
     @Autowired
-    private InstructorRepository instRepo;
+    public InstructorRepository instRepo;
 
+    @Autowired
+    public UserRepository userRepo;
+
+    public Users current_user;
     // Controller for instructors
 
     // create request
@@ -34,10 +39,13 @@ public class InstructorController {
         LocalDateTime firstChoice = LocalDateTime.parse(instructor.get("firstChoice"));
         LocalDateTime secondChoice = LocalDateTime.parse(instructor.get("secondChoice"));
         LocalDateTime thirdChoice = LocalDateTime.parse(instructor.get("thirdChoice"));
+        String instructorUser = instructor.get("instructorUser"); 
+        current_user = userRepo.findByUsername(instructorUser);
 
         // create the instructor exam request
-        Instructor newRequest = new Instructor(course_name, duration, section, firstChoice, secondChoice, thirdChoice);
+        Instructor newRequest = new Instructor(course_name, duration, section, firstChoice, secondChoice, thirdChoice, instructorUser);
         instRepo.save(newRequest);
+<<<<<<< HEAD
         
         // still need to fix routing since teacher.html cannot read user model
         return "redirect:/dashboard/teacher";
@@ -49,23 +57,40 @@ public class InstructorController {
         model.addAttribute("requests", requests);
 
         return "redirect:/dashboard/teacher";
+=======
+
+        return "redirect:/users/teacher";
     }
-    /*
-    @PostMapping(value = "")
-     * create requests
-     */
 
-    // edits
-    /*
-    @PostMapping(value ="")
-     * edit requests
-    */
+    // delete a request from table
+    @GetMapping("/request/delete/{uid}")
+    public String deleteStudent(@PathVariable Integer uid) {
+        instRepo.deleteById(uid);
+        return "redirect:/users/teacher";
+>>>>>>> f4dc006fe6dc27069be3d19b0536bb6fb0aa8733
+    }
 
-    // deletes
-    /*
-    @PostMapping(value = "")
-     *  delete requests
-    */
-    
-    // others 
+    // edit request attributes
+    @GetMapping("/request/{uid}")
+	public String editRequestForm(@PathVariable Integer uid, Model model) {
+		model.addAttribute("teacher", instRepo.findById(uid).get());
+		return "users/teacher/editRequest";
+	}
+
+    // save updated request information
+    @PostMapping("/request/{uid}")
+	public String updateRequest(@PathVariable Integer uid, @ModelAttribute("teacher") Instructor teacher) {
+	
+		Instructor newRequest = instRepo.findById(uid).get();
+        newRequest.setCourse_name(teacher.getCourse_name());
+        newRequest.setDuration(teacher.getDuration());
+        newRequest.setSection(teacher.getSection());
+        newRequest.setFirst_choice(teacher.getFirst_choice());
+        newRequest.setSecond_choice(teacher.getSecond_choice());
+        newRequest.setThird_choice(teacher.getThird_choice());
+		
+		instRepo.save(newRequest);
+		return "redirect:/users/teacher";		
+	}
+
 }

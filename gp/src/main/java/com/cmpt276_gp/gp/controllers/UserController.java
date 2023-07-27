@@ -1,5 +1,6 @@
 package com.cmpt276_gp.gp.controllers;
 
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.cmpt276_gp.gp.models.Users;
 import com.cmpt276_gp.gp.models.UserRepository;
+import com.cmpt276_gp.gp.models.Instructor;
+import com.cmpt276_gp.gp.models.InstructorRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class UserController {
     @Autowired
-    private UserRepository userRepo;
-    private Users current_user;
+    public UserRepository userRepo;
+    @Autowired
+    public InstructorRepository instRepo;
+    
+    public Users current_user;
 
     @PostMapping("/users/login")
     public String loginUser(@RequestParam Map<String, String> loginUser, HttpServletResponse response, Model model) {
@@ -113,6 +119,8 @@ public class UserController {
     @GetMapping("/users/teacher")
     public String showTeacherPage(Model model) {
         model.addAttribute("user", current_user);
+        List<Instructor> teacherTable = instRepo.findAll();
+        model.addAttribute("teacherTable", teacherTable);
         return "users/teacher/teacher";
     }
 
@@ -137,5 +145,4 @@ public class UserController {
         return "users/login";
     }
     
-
 }

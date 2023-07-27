@@ -61,21 +61,20 @@
       <h1 style="margin-top: 15px;" th:text="'Welcome, Admin ' + ${user.username}"></h1>
       <nav>
         <ul>
-          <li><a href="/admin/dashboard">Dashboard</a></li>
           <li><a href="/admin/users">Manage Users</a></li>
-          <li><a href="/admin/exams">Manage Exams</a></li> 
+          <li><a href="/admin/exams">Manage Exam Requests</a></li> 
         </ul>
       </nav>
       <h2>Admin Dashboard</h2>
       <p>
          <!-- Request Form -->
-      <form class="request-form" action="/instructor/create" method="post">
+      <form class="request-form" action="/admin/create" method="post">
         <!-- Duration and Section fields -->
         <div class="row">
           <div class="col-md-4">
             <div class="form-group">
               <label for="course_name">Course Name:</label>
-              <input type="text" id="course_name" name="course_name" class="form-control" required>
+              <input type="text" id="courseName" name="courseName" class="form-control" required>
             </div>
           </div>
           <div class="col-md-4">
@@ -96,18 +95,24 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="course_name">Number of Proctors Assigned:</label>
-                <input type="number" id="num_proctors" name="num_proctors" class="form-control" required>
+                <input type="number" id="noProctors" name="noProctors" class="form-control" required>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="course_name">Room Number Assigned:</label>
-                <input type="text" id="roomNum" name="roomNum" class="form-control" required>
+                <label for="course_name">Amount of Rooms Assigned:</label>
+                <input type="number" id="noOfRooms" name="noOfRooms" class="form-control" required>
               </div>
               </div>
             <div class="col-md-4">
-              <label for="firstChoice">Time Slot</label>
-              <input type="datetime-local" id="timeSlot" name="timeSlot" class="form-control" required>
+              <div class="form-group">
+                <label for="course_name">Room Number(s) Assigned:</label>
+                <input type="text" id="roomsAssigned" name="roomsAssigned" class="form-control" required>
+              </div>
+              </div>
+            <div class="col-md-4">
+              <label for="firstChoice">Start Time</label>
+              <input type="datetime-local" id="startTime" name="startTime" class="form-control" required>
             </div>
           </div>
           <!-- Submit button -->
