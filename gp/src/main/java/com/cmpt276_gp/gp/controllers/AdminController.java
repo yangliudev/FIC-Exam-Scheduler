@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.cmpt276_gp.gp.models.Admin;
 import com.cmpt276_gp.gp.models.AdminRepository;
+import com.cmpt276_gp.gp.models.InstructorRepository;
+import com.cmpt276_gp.gp.models.UserRepository;
+
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,7 +22,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
     @Autowired
     private AdminRepository adminRepo;
+    private InstructorRepository instRepo;
+    private UserRepository userRepo;
 
+
+    @GetMapping("/admin/dashboard")
+    public String showDashboard(Model model){
+        return "users/admin/admin";
+    }
     //controller for admin
 
     // get requests

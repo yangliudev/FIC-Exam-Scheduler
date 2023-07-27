@@ -26,7 +26,7 @@ public class InstructorController {
 
     // create request
     @PostMapping("/instructor/create")
-    public String createRequest(@RequestParam Map<String, String> instructor) {
+    public String createRequest(@RequestParam Map<String, String> instructor){
 
         String course_name = instructor.get("course_name");
         int duration = Integer.parseInt(instructor.get("duration"));
@@ -38,7 +38,7 @@ public class InstructorController {
         // create the instructor exam request
         Instructor newRequest = new Instructor(course_name, duration, section, firstChoice, secondChoice, thirdChoice);
         instRepo.save(newRequest);
-
+        
         // still need to fix routing since teacher.html cannot read user model
         return "redirect:/dashboard/teacher";
     }
@@ -48,7 +48,7 @@ public class InstructorController {
         List<Instructor> requests = instRepo.findAll();
         model.addAttribute("requests", requests);
 
-        return "/users/teacher/teacher";
+        return "redirect:/dashboard/teacher";
     }
     /*
     @PostMapping(value = "")
