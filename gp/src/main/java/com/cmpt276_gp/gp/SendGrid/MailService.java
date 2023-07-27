@@ -2,8 +2,6 @@ package com.cmpt276_gp.gp.SendGrid;
 
 import java.io.IOException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +20,8 @@ public class MailService {
 
     public Response sendEmail(EmailRequest emailReq){
         // for testing 
-        Mail mail = new Mail(new Email(/*email*/), emailReq.getSubject(), new Email(emailReq.getTo()), new Content("text/plain", emailReq.getBody()));
-        mail.setReplyTo(new Email(/*email*/));
+        Mail mail = new Mail(new Email("sjd8@sfu.ca"), emailReq.getSubject(), new Email(emailReq.getTo()), new Content("application/json", emailReq.getBody()));
+        mail.setReplyTo(new Email("sjd8@sfu.ca"));
 
         Request request = new Request();
 
