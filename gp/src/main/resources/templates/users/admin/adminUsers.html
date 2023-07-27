@@ -34,9 +34,8 @@
             <td th:text="${user.username}"></td>
             <td th:text="${user.userType}"></td>
             <td th:text="${user.email}"></td>
-    
               <td>
-                <form action="/admin/removeUser" method="post">
+                <form th:if="${user.username != null and user.username != ''}" action="/admin/removeUser" method="post">
                   <input type="hidden" name="username" th:value="${user.username}">
                   <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
                   <button class="btn btn-danger" for="danger">Remove User</button>

@@ -31,7 +31,7 @@ public class AdminController {
     public InstructorRepository instRepo;
     @Autowired
     private UserRepository userRepo;
-
+    public Users current_user;
     //controller for admin
 
     @GetMapping("/admin/exams")
@@ -48,46 +48,17 @@ public class AdminController {
     }
     @PostMapping("/admin/removeUser")
     public String removeUser(@RequestParam("username") String username, Model model){
+        if (username.equals(null)){
+            userRepo.deleteById(null);
+        }
         Users deleteUser = userRepo.findByUsername(username);
         userRepo.delete(deleteUser);
         List<Users> users = userRepo.findAll();
         model.addAttribute("users", users);
         return "redirect:/admin/users";
     }
-    @PostMapping("admin/edit")
-     public String updateUser(@ModelAttribute("user") Users user, @RequestParam("password") String password, 
-                             @RequestParam("currentPassword") String currentPassword,
-                             @RequestParam("newPassword") String newPassword,
-                             @RequestParam("confirmPassword") String confirmPassword,
-                             Model model) {
-        // Check if the current password matches the password in the database
-        if (currentPassword.equals(user.getPassword())) {
-            // Check if the new password and confirm password match
-            if (newPassword.equals(confirmPassword)) {
-                // Update the user's password
-                user.setPassword(newPassword);
-                userRepo.save(user);
-                // Redirect to the corresponding page based on the user type
-                return "redirect:/admin/users";
-            } else {
-                // Password and confirm password do not match
-                model.addAttribute("error", "New password and confirm password do not match.");
-            }
-        } else {
-            // Current password is incorrect
-            model.addAttribute("error", "Incorrect current password.");
-        }
-        // If there is an error, return to the edit page
-        return "admin/adminEdit";
-    }
-    @GetMapping("admin/adminEdit")
-    public String editUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email, Model model){
-        model.addAttribute("username", username);
-        model.addAttribute("password", password);
-        model.addAttribute("email", email);
-        
-		return "users/admin/adminEdit";
-    }
+    
+
     /*
     @GetMapping(value ="")
      * get all requests
