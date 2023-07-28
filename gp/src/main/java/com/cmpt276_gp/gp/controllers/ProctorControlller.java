@@ -31,7 +31,7 @@ public class ProctorControlller {
         return "placeholder";
     }
 
-    @GetMapping("/proctor/pending-exams")
+    @GetMapping("/proctor/pending-exams") 
     public String viewExamRequests(Model model) {
         List<Instructor> teacherTable = instRepo.findAll();
         model.addAttribute("teacherTable", teacherTable);
