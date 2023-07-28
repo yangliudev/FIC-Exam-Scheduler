@@ -115,6 +115,9 @@
 
         <!-- Non-Available Dates Form -->
         <form class="non-available-dates-form" action="/proctor/non-available-dates" method="post">
+          <!-- Proctor User (hidden field) -->
+          <input type="hidden" id="proctorUser" name="proctorUser" th:value="${user.username}" />
+      
            
           <!--NEED TO ADD A OPTION FOR HALLMONITOR/ROOM INVIGILATOR ROLES INTO DATABASE-->
           <!-- <div class="form-group">

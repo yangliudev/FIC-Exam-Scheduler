@@ -38,23 +38,24 @@ public class ProctorController {
     }
 
     @PostMapping("/proctor/non-available-dates")
-    public String nonAvailableDates(@RequestParam("nonAvailableDates") List<String> nonAvailableDateStrings,
-            Model model) {
+    public String nonAvailableDates(@RequestParam("proctorUser") String proctorUser,
+                                    @RequestParam("nonAvailableDates") List<String> nonAvailableDateStrings,
+                                    Model model) {
         List<LocalDateTime> parsedDates = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    
+
         for (String dateString : nonAvailableDateStrings) {
             LocalDate date = LocalDate.parse(dateString, formatter);
             LocalDateTime dateTime = date.atStartOfDay();
             parsedDates.add(dateTime);
         }
-    
-        Proctor proctor = new Proctor(parsedDates);
+
+        Proctor proctor = new Proctor(proctorUser, parsedDates);
         procRepo.save(proctor);
-    
+
         // Add the success message to the model
         model.addAttribute("successMessage", "Non-available dates saved successfully!");
-    
+
         // Reload the view without redirecting
         return viewExamRequests(model);
     }

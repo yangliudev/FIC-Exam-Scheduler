@@ -10,9 +10,9 @@ public class Proctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uid;
-    // ADD PROCTOR ID TO KEEP TRACK OF PROCTORS DATES
+    // Add roles: room invigilator and hall monitor
+    private String proctorUser;
 
-    @ElementCollection
     private List<LocalDateTime> nonAvailableDates;
 
     // Default constructor
@@ -21,17 +21,34 @@ public class Proctor {
     }
 
     // Parameters Constructor
-    public Proctor(List<LocalDateTime> nonAvailableDates) {
+    public Proctor(String proctorUser, List<LocalDateTime> nonAvailableDates) {
+        this.proctorUser = proctorUser;
         this.nonAvailableDates = nonAvailableDates;
     }
 
-    // Getters
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public String getProctorUser() {
+        return proctorUser;
+    }
+
+    public void setProctorUser(String proctorUser) {
+        this.proctorUser = proctorUser;
+    }
+
     public List<LocalDateTime> getNonAvailableDates() {
         return nonAvailableDates;
     }
 
-    // Setters
     public void setNonAvailableDates(List<LocalDateTime> nonAvailableDates) {
         this.nonAvailableDates = nonAvailableDates;
     }
+
+
 }
