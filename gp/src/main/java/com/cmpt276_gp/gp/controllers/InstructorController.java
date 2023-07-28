@@ -31,7 +31,7 @@ public class InstructorController {
 
     // create request
     @PostMapping("/instructor/create")
-    public String createRequest(@RequestParam Map<String, String> instructor) {
+    public String createRequest(@RequestParam Map<String, String> instructor){
 
         String course_name = instructor.get("course_name");
         int duration = Integer.parseInt(instructor.get("duration"));
@@ -45,15 +45,17 @@ public class InstructorController {
         // create the instructor exam request
         Instructor newRequest = new Instructor(course_name, duration, section, firstChoice, secondChoice, thirdChoice, instructorUser);
         instRepo.save(newRequest);
-
-        return "redirect:/users/teacher";
+        
+        // still need to fix routing since teacher.html cannot read user model
+        return "redirect:/dashboard/teacher";
     }
 
-    // delete a request from table
-    @GetMapping("/request/delete/{uid}")
-    public String deleteStudent(@PathVariable Integer uid) {
-        instRepo.deleteById(uid);
-        return "redirect:/users/teacher";
+    @GetMapping("/dashboard/teacher")
+    public String showIntructorPage(Model model) {
+        List<Instructor> requests = instRepo.findAll();
+        model.addAttribute("requests", requests);
+
+        return "redirect:/dashboard/teacher";
     }
 
     // edit request attributes

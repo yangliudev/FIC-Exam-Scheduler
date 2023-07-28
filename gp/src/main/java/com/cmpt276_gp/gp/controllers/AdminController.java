@@ -27,6 +27,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
     @Autowired
     private AdminRepository adminRepo;
+
+    @GetMapping("/admin/dashboard")
+    public String showDashboard(Model model){
+        return "users/admin/admin";
+    }
     @Autowired
     public InstructorRepository instRepo;
     @Autowired
