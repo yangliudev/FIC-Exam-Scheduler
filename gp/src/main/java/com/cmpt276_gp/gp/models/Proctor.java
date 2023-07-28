@@ -1,7 +1,8 @@
 package com.cmpt276_gp.gp.models;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime; //used for time
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "proctor")
@@ -9,28 +10,27 @@ public class Proctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uid;
-    private LocalDateTime nonAvailableDates;
+
+    @ElementCollection
+    private List<LocalDateTime> nonAvailableDates;
 
     // Default constructor
-    public Proctor(){
+    public Proctor() {
 
     }
 
-
     // Parameters Constructor
-    public Proctor(LocalDateTime nonAvailableDates){
+    public Proctor(List<LocalDateTime> nonAvailableDates) {
         this.nonAvailableDates = nonAvailableDates;
     }
 
     // Getters
-    public LocalDateTime getNonAvailableDates(){
+    public List<LocalDateTime> getNonAvailableDates() {
         return nonAvailableDates;
     }
 
     // Setters
-    public void setNonAvailableDates(LocalDateTime nonAvailableDates){
+    public void setNonAvailableDates(List<LocalDateTime> nonAvailableDates) {
         this.nonAvailableDates = nonAvailableDates;
     }
 }
-
-
