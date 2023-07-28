@@ -10,6 +10,8 @@ public class Proctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uid;
+    // Add roles: room invigilator and hall monitor
+    private String proctorUser;
 
     @ElementCollection
     private List<LocalDate> nonAvailableDates;
@@ -35,21 +37,17 @@ public class Proctor {
         this.role = role;
     }
 
-    public String getRole() {
-        return role;
-    }
-
     public void setRole(String role) {
         this.role = role;
     }
 
-    // Getters
     public List<LocalDate> getNonAvailableDates() {
         return nonAvailableDates;
     }
 
-    // Setters
     public void setNonAvailableDates(List<LocalDate> nonAvailableDates) {
         this.nonAvailableDates = nonAvailableDates;
     }
+
 }
+ 
