@@ -92,6 +92,7 @@
       <ul>
         <!-- Add relevant links for proctor dashboard -->
         <li><a href="/proctor/pending-exams">Pending Assignments</a></li>
+        <li><a href="/proctor/my-non-available-dates"> My Non Available Dates</a></li>
       </ul>
     </nav>
 
@@ -102,11 +103,11 @@
       <div class="form-group">
         <label>Select Role:</label>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="hallMonitor" name="role" value="hallMonitor">
+          <input class="form-check-input" type="radio" id="hallMonitor" name="role" value="hallMonitor">
           <label class="form-check-label" for="hallMonitor">Hall Monitor</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="roomInvigilator" name="role" value="roomInvigilator">
+          <input class="form-check-input" type="radio" id="roomInvigilator" name="role" value="roomInvigilator">
           <label class="form-check-label" for="roomInvigilator">Room Invigilator</label>
         </div>
       </div>
@@ -114,6 +115,12 @@
         <label for="nonAvailableDates">Select Non-Available Dates:</label>
         <input type="text" id="nonAvailableDates" name="nonAvailableDates" class="form-control" required>
       </div>
+      <input
+          type="hidden"
+          id="proctorUser"
+          name="proctorUser"
+          th:value="${user.username}"
+        />
       <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
     
