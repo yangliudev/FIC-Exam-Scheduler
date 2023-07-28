@@ -10,6 +10,7 @@ public class Proctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uid;
+    // ADD PROCTOR ID TO KEEP TRACK OF PROCTORS DATES
 
     @ElementCollection
     private List<LocalDateTime> nonAvailableDates;
