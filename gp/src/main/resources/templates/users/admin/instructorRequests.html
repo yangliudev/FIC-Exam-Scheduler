@@ -11,9 +11,9 @@
         <h1 style="text-align: center; margin: 20px;">Exam Requests</h1>
 
         <!-- Request Table -->
-        <table class="request-table table table-striped">
-        <thead>
-            <tr>
+        <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr class="text-center">
             <th>Instructor</th>
             <th>Course</th>
             <th>Duration</th>
@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="teacher: ${teacherTable}">
+            <tr th:each="teacher: ${teacherTable}" class="text-center">
                 <td th:text="${teacher.instructorUser}"></td>
                 <td th:text="${teacher.course_name}"></td>
                 <td th:text="${teacher.duration}"></td>

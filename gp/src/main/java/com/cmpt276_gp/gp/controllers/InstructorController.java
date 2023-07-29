@@ -46,7 +46,6 @@ public class InstructorController {
         Instructor newRequest = new Instructor(course_name, duration, section, firstChoice, secondChoice, thirdChoice, instructorUser);
         instRepo.save(newRequest);
         
-        // still need to fix routing since teacher.html cannot read user model
         return "redirect:/dashboard/teacher";
     }
 

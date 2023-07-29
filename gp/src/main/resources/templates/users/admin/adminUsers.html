@@ -20,30 +20,35 @@
     </style>
 </head>
 <body>
-    <h2>All Users</h2>
-    <table class="table table-striped">
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">Username</th>
-            <th scope="col">User Type</th>
-            <th scope="col">Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="user:${users}">
-            <td th:text="${user.username}"></td>
-            <td th:text="${user.userType}"></td>
-            <td th:text="${user.email}"></td>
-              <td>
-                <form th:if="${user.username != null and user.username != ''}" action="/admin/removeUser" method="post">
-                  <input type="hidden" name="username" th:value="${user.username}">
-                  <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
-                  <button class="btn btn-danger" for="danger">Remove User</button>
-                   
-          </form>
-      </td>
-      </tr>
+  <div class="container">
+    <h1 style="text-align: center; margin: 20px;">Users</h1>
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr class="text-center">
+          <th scope="col">Username</th>
+          <th scope="col">User Type</th>
+          <th scope="col">Email</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr 
+          th:each="user:${users}" class="text-center"
+          th:if="${currentUser.username} != ${user.username}"
+        >
+          <td th:text="${user.username}"></td>
+          <td th:text="${user.userType}"></td>
+          <td th:text="${user.email}"></td>
+          <td>
+            <form th:if="${user.username != null and user.username != ''}" action="/admin/removeUser" method="post">
+              <input type="hidden" name="username" th:value="${user.username}">
+              <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+              <button class="Delete btn btn-danger" for="danger">Remove User</button>
+            </form>
+          </td>
+        </tr>
       </tbody>
-      </table>
+    </table>
+  </div>
 </body>
 </html>

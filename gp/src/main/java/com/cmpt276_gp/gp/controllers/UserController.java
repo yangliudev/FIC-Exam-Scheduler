@@ -105,7 +105,7 @@ public class UserController {
     }
 
     @GetMapping("/users/edit")
-	public String editStudentForm(Model model) {
+	public String editUserForm(Model model) {
 		model.addAttribute("user", current_user);
 		return "users/edit";
 	}
@@ -114,6 +114,14 @@ public class UserController {
     public String showAdminPage(Model model) {
         model.addAttribute("user", current_user);
         return "users/admin/admin";
+    }
+
+    @GetMapping("/admin/users")
+    public String getAllUsers(Model model){ 
+        model.addAttribute("currentUser", current_user);
+        List<Users> allUsers = userRepo.findAll(); 
+        model.addAttribute("users", allUsers);
+        return "users/admin/adminUsers";
     }
 
     @GetMapping("/users/teacher")

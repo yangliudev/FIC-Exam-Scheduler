@@ -45,12 +45,7 @@ public class AdminController {
         model.addAttribute("teacherTable", teacherTable);
         return "users/admin/instructorRequests";
     }
-    @GetMapping("/admin/users")
-    public String getAllUsers(Model model){
-        List<Users> allUsers = userRepo.findAll();
-        model.addAttribute("users", allUsers);
-        return "users/admin/adminUsers";
-    }
+    
     @PostMapping("/admin/removeUser")
     public String removeUser(@RequestParam("username") String username, Model model){
         if (username.equals(null)){
@@ -62,24 +57,4 @@ public class AdminController {
         model.addAttribute("users", users);
         return "redirect:/admin/users";
     }
-    
-
-    /*
-    @GetMapping(value ="")
-     * get all requests
-     */
-
-    // edits
-    /*
-    @PostMapping(value ="")
-     * edit requests
-    */
-
-    // deletes
-    /*
-    @PostMapping(value = "")
-     *  delete requests
-    */
-    
-    // others 
 }
