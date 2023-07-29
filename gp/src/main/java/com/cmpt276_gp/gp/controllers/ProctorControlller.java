@@ -39,11 +39,15 @@ public class ProctorControlller {
     public InstructorRepository instRepo;
     @Autowired
     public UserRepository userRepo;
+    // @GetMapping("/proctor/dashboard")
+    // public String showDashboard(Model model){
+    //     List<Proctor> requests = procRepo.findAll();
+    //     model.addAttribute("requests", requests);
+    //     return "users/proctor/proctor";
+    // }
     @GetMapping("/proctor/dashboard")
-    public String showDashboard(Model model){
-        List<Proctor> requests = procRepo.findAll();
-        model.addAttribute("requests", requests);
-        return "users/proctor/proctor";
+    public String showProctorDashboard(Model model){
+        return "redirect:/users/proctor";
     }
     @PostMapping("/proctor/non-available-dates")
     public String nonAvailDates(@RequestParam("proctorUser") String username, @RequestParam("role") String role, @RequestParam("nonAvailableDates") List<String> nonAvailableDates, Model model){
@@ -70,17 +74,5 @@ public class ProctorControlller {
     public String myNonAvailDates(Model model){
         return "users/proctor/proctorNADates";
     }
-    // create request
-    /*
-    @PostMapping(value = "")
-     * create requests
-     */
-
-     // edits
-     /*
-    @PostMapping(value ="")
-     * edit requests
-    */
-
 
 }

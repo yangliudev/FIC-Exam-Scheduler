@@ -29,8 +29,8 @@ public class AdminController {
     private AdminRepository adminRepo;
 
     @GetMapping("/admin/dashboard")
-    public String showDashboard(Model model){
-        return "users/admin/admin";
+    public String showAdminDashboard(Model model){
+        return "redirect:/users/admin";
     }
     @Autowired
     public InstructorRepository instRepo;
