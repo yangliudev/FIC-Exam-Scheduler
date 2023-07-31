@@ -181,7 +181,11 @@
             
               <td th:text="${proctor.username}"></td>
               <td th:text="${proctor.role}"></td>
-              <td th:text="${proctor.nonAvailableDates}"></td>
+              <td>
+                <ul>
+                    <li th:each="date : ${proctor.nonAvailableDates}" th:text="${date}"></li>
+                </ul>
+            </td>
           </tr>
       </tbody>
       </table>
