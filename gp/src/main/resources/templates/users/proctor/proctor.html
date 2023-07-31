@@ -165,6 +165,7 @@
       <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
     
+<<<<<<< HEAD
 <h4 style="text-align: center; margin-bottom: 20px">My Non-Available Dates</h4>
     <!-- Request Table -->
     <table class="request-table table table-striped">
@@ -186,6 +187,33 @@
       </tbody>
       </table>
   </div>
+=======
+  </div>
+</div>
+<!-- Request Table -->
+<table class="request-table table table-striped">
+  <thead>
+      <tr>
+          <th>Proctor</th>
+          <th>Role</th>
+          <th>Non Available Dates</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr th:each="proctor: ${requests}" th:if="${proctor.username} == ${user.username}">
+          <td th:text="${proctor.username}"></td>
+          <td th:text="${proctor.role}"></td>
+          <td>
+              <ul>
+                  <li th:each="date : ${proctor.nonAvailableDates}" th:text="${date}"></li>
+              </ul>
+          </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+</html>
+>>>>>>> f9aa79f7aca9d856e34a20b5046a55189c890662
 
   <!-- Bootstrap JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

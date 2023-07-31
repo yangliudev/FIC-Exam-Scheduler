@@ -13,9 +13,14 @@ import com.cmpt276_gp.gp.models.Users;
 import com.cmpt276_gp.gp.models.UserRepository;
 import com.cmpt276_gp.gp.models.Instructor;
 import com.cmpt276_gp.gp.models.InstructorRepository;
+<<<<<<< HEAD
 import com.cmpt276_gp.gp.models.Proctor;
 import com.cmpt276_gp.gp.models.ProctorRepository;
 
+=======
+import com.cmpt276_gp.gp.models.Admin;
+import com.cmpt276_gp.gp.models.AdminRepository;
+>>>>>>> f9aa79f7aca9d856e34a20b5046a55189c890662
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,7 +32,12 @@ public class UserController {
     @Autowired
     public InstructorRepository instRepo;
     @Autowired
+<<<<<<< HEAD
     private ProctorRepository procRepo;
+=======
+    public AdminRepository adminRepo;
+    
+>>>>>>> f9aa79f7aca9d856e34a20b5046a55189c890662
     public Users current_user;
 
     @PostMapping("/users/login")
@@ -117,6 +127,8 @@ public class UserController {
     @GetMapping("/users/admin")
     public String showAdminPage(Model model) {
         model.addAttribute("user", current_user);
+        List<Admin> adminTable = adminRepo.findAll();
+        model.addAttribute("adminTable", adminTable);
         return "users/admin/admin";
     }
 

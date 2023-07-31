@@ -10,8 +10,6 @@ public class Proctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uid;
-    // Add roles: room invigilator and hall monitor
-    private String proctorUser;
 
     @ElementCollection
     private List<LocalDate> nonAvailableDates;
