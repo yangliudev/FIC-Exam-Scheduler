@@ -80,4 +80,11 @@ public class InstructorController {
 		return "redirect:/users/teacher";		
 	}
 
+    // delete a request from table
+    @GetMapping("/request/delete/{uid}")
+    public String deleteRequest(@PathVariable Integer uid) {
+        instRepo.deleteById(uid);
+        return "redirect:/users/teacher";
+    }
+
 }
