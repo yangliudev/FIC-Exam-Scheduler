@@ -39,31 +39,31 @@ public class Admin {
 
 
     // Getters
-    public String getCourseName(String courseName){
+    public String getCourseName(){
         return courseName;
     }
 
-    public LocalDateTime getStartTime(LocalDateTime startTime){
+    public LocalDateTime getStartTime(){
         return startTime;
     }
 
-    public int getSection(int section){
+    public int getSection(){
         return section;
     }
 
-    public int getDuration(int duration){
+    public int getDuration(){
         return duration;
     }
 
-    public int getNoOfRooms(int noOfRooms){
+    public int getNoOfRooms(){
         return noOfRooms;
     }
 
-    public int getRoomsAssigned(int roomsAssigned){
+    public int getRoomsAssigned(){
         return roomsAssigned;
     }
 
-    public int getNoProctors(int noProctors){
+    public int getNoProctors(){
         return noProctors;
     }
 

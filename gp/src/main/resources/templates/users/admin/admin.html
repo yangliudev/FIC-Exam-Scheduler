@@ -71,7 +71,7 @@
         </ul>
       </nav>
       <h2>Admin Dashboard</h2>
-      <p>
+     
          <!-- Request Form -->
       <form class="request-form" action="/admin/create" method="post">
         <!-- Duration and Section fields -->
@@ -99,19 +99,19 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label for="course_name">Number of Proctors Assigned:</label>
+                <label for="noProctors">Number of Proctors Assigned:</label>
                 <input type="number" id="noProctors" name="noProctors" class="form-control" required>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="course_name">Amount of Rooms Assigned:</label>
+                <label for="noOfRooms">Number of Rooms Assigned:</label>
                 <input type="number" id="noOfRooms" name="noOfRooms" class="form-control" required>
               </div>
               </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="course_name">Room Number(s) Assigned:</label>
+                <label for="roomsAssigned">Room Number(s):</label>
                 <input type="text" id="roomsAssigned" name="roomsAssigned" class="form-control" required>
               </div>
               </div>
@@ -122,8 +122,38 @@
           </div>
           <!-- Submit button -->
           <button type="submit" class="btn btn-primary mt-3">Finalize Exam Slot</button>
-        </form>    
-      </p>
+        </form> 
+        
+        <h4 style="text-align: center; margin-bottom: 20px">Finalized Exams</h4>
+
+        <!-- Request Table -->
+        <table class="table table-striped table-bordered">
+          <thead class="table-dark">
+            <tr class="text-center">
+              <th>Course Name</th>
+              <th>Duration (hours)</th>
+              <th>Section</th>
+              <th>Number of Proctors</th>
+              <th>Number of Rooms</th>
+              <th>Room Number</th>
+              <th>Start Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              th:each="admin: ${adminTable}"
+              class="text-center"
+            >
+              <td th:text="${admin.courseName}"></td>
+              <td th:text="${admin.duration}"></td>
+              <td th:text="${admin.section}"></td>
+              <td th:text="${admin.noProctors}"></td>
+              <td th:text="${admin.noOfRooms}"></td>
+              <td th:text="${admin.roomsAssigned}"></td>
+              <td th:text="${admin.startTime}"></td>
+            </tr>
+          </tbody>
+        </table>
     </div>
 
     <!-- Bootstrap JavaScript -->

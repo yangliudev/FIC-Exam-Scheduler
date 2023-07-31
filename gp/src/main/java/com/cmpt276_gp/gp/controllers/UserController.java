@@ -13,6 +13,8 @@ import com.cmpt276_gp.gp.models.Users;
 import com.cmpt276_gp.gp.models.UserRepository;
 import com.cmpt276_gp.gp.models.Instructor;
 import com.cmpt276_gp.gp.models.InstructorRepository;
+import com.cmpt276_gp.gp.models.Admin;
+import com.cmpt276_gp.gp.models.AdminRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,6 +25,8 @@ public class UserController {
     public UserRepository userRepo;
     @Autowired
     public InstructorRepository instRepo;
+    @Autowired
+    public AdminRepository adminRepo;
     
     public Users current_user;
 
@@ -113,6 +117,8 @@ public class UserController {
     @GetMapping("/users/admin")
     public String showAdminPage(Model model) {
         model.addAttribute("user", current_user);
+        List<Admin> adminTable = adminRepo.findAll();
+        model.addAttribute("adminTable", adminTable);
         return "users/admin/admin";
     }
 

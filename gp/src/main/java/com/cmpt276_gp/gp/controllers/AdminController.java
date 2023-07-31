@@ -1,5 +1,6 @@
 package com.cmpt276_gp.gp.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +45,25 @@ public class AdminController {
         List<Instructor> teacherTable = instRepo.findAll();
         model.addAttribute("teacherTable", teacherTable);
         return "users/admin/instructorRequests";
+    }
+
+    @PostMapping("/admin/create")
+    public String createAdminRequest(@RequestParam Map<String, String> request, HttpServletResponse response) {
+    
+        // Retrieve the form data
+        String courseName = request.get("courseName");
+        int duration = Integer.parseInt(request.get("duration"));
+        int section = Integer.parseInt(request.get("section"));
+        int noProctors = Integer.parseInt(request.get("noProctors"));
+        int noOfRooms = Integer.parseInt(request.get("noOfRooms"));
+        int roomsAssigned = Integer.parseInt(request.get("roomsAssigned"));
+        LocalDateTime startTime = LocalDateTime.parse(request.get("startTime"));
+    
+        Admin newRequest = new Admin(courseName, startTime, section, duration, noOfRooms, roomsAssigned, noProctors);
+        adminRepo.save(newRequest);
+        response.setStatus(201);
+    
+        return "redirect:/users/admin";
     }
  
     @PostMapping("/admin/removeUser")
