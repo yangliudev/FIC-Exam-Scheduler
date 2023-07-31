@@ -53,18 +53,5 @@ class AdminControllerTest {
         verify(model, times(1)).addAttribute("teacherTable", teacherTable);
     }
 
-    @Test
-    void testGetAllUsers() {
-        List<Users> allUsers = new ArrayList<>();
-        allUsers.add(new Users());
-        when(userRepo.findAll()).thenReturn(allUsers);
-
-        Model model = mock(Model.class);
-        String viewName = adminController.getAllUsers(model);
-
-        assertEquals("users/admin/adminUsers", viewName);
-        verify(userRepo, times(1)).findAll();
-        verify(model, times(1)).addAttribute("users", allUsers);
-    }
 
 }

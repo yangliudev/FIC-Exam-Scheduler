@@ -47,6 +47,8 @@ public class ProctorControlller {
     // }
     @GetMapping("/proctor/dashboard")
     public String showProctorDashboard(Model model){
+        List<Proctor> requests = procRepo.findAll();
+        model.addAttribute("requests", requests);
         return "redirect:/users/proctor";
     }
     @PostMapping("/proctor/non-available-dates")
@@ -72,6 +74,8 @@ public class ProctorControlller {
     }
     @GetMapping("/proctor/my-non-available-dates")
     public String myNonAvailDates(Model model){
+        List<Proctor> requests = procRepo.findAll();
+        model.addAttribute("requests", requests);
         return "users/proctor/proctorNADates";
     }
 

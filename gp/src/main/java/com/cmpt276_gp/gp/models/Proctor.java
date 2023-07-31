@@ -26,6 +26,10 @@ public class Proctor {
         return username;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
