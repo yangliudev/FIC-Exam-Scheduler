@@ -143,26 +143,28 @@
     
   </div>
 </div>
-    <!-- Request Table -->
-    <table class="request-table table table-striped">
-      <thead>
-          <tr>
+<!-- Request Table -->
+<table class="request-table table table-striped">
+  <thead>
+      <tr>
           <th>Proctor</th>
           <th>Role</th>
           <th>Non Available Dates</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr th:each="proctor: ${requests}"
-          th:if="${proctor.username} == ${user.username}">
-            
-              <td th:text="${proctor.username}"></td>
-              <td th:text="${proctor.role}"></td>
-          </tr>
-      </tbody>
-      </table>
-  </div>
-</body>
+      </tr>
+  </thead>
+  <tbody>
+      <tr th:each="proctor: ${requests}" th:if="${proctor.username} == ${user.username}">
+          <td th:text="${proctor.username}"></td>
+          <td th:text="${proctor.role}"></td>
+          <td>
+              <ul>
+                  <li th:each="date : ${proctor.nonAvailableDates}" th:text="${date}"></li>
+              </ul>
+          </td>
+      </tr>
+  </tbody>
+</table>
+</div>
 </html>
 
   <!-- Bootstrap JavaScript -->
