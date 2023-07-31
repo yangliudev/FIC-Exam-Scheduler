@@ -13,6 +13,9 @@ import com.cmpt276_gp.gp.models.Users;
 import com.cmpt276_gp.gp.models.UserRepository;
 import com.cmpt276_gp.gp.models.Instructor;
 import com.cmpt276_gp.gp.models.InstructorRepository;
+import com.cmpt276_gp.gp.models.Proctor;
+import com.cmpt276_gp.gp.models.ProctorRepository;
+
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,7 +26,8 @@ public class UserController {
     public UserRepository userRepo;
     @Autowired
     public InstructorRepository instRepo;
-    
+    @Autowired
+    private ProctorRepository procRepo;
     public Users current_user;
 
     @PostMapping("/users/login")
@@ -134,6 +138,8 @@ public class UserController {
 
     @GetMapping("/users/proctor")
     public String showProctorPage(Model model) {
+         List<Proctor> requests = procRepo.findAll();
+        model.addAttribute("requests", requests);
         model.addAttribute("user", current_user);
         return "users/proctor/proctor";
     }

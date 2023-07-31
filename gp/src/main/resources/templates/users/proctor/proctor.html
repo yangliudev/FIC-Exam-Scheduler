@@ -90,6 +90,30 @@
             background-color: #f8f9fa;
         }
     </style>
+      <script>
+      function submitForm() {
+        var role = document.getElementsByName("role")[0].value; // For Hall Monitor
+        var role = document.getElementsByName("role")[1].value;
+        var NADates = document.getElementById("nonAvailableDates").value;
+
+      if (role === "" || NADates === "") {
+      showMessage("Please fill in all fields");
+      return false;
+    }
+
+        document.querySelector(".request-form").submit();
+      }
+      
+      function showMessage(message) {
+      var errorMessageElement = document.getElementById("errorMessage");
+      errorMessageElement.textContent = message;
+      errorMessageElement.style.display = "block";
+
+      setTimeout(function() {
+      errorMessageElement.style.display = "none";
+  }, 3000);
+}
+      </script>
 </head>
 
 <body>
@@ -109,14 +133,13 @@
       <ul>
         <!-- Add relevant links for proctor dashboard -->
         <li><a href="/proctor/pending-exams">Pending Assignments</a></li>
-        <li><a href="/proctor/my-non-available-dates"> My Non Available Dates</a></li>
       </ul>
     </nav>
 
     <h2>Proctor Dashboard</h2>
     
     <!-- Non-Available Dates Form -->
-    <form class="non-available-dates-form" action="/proctor/non-available-dates" method="post">
+    <form class="non-available-dates-form" action="/proctor/non-available-dates" method="post" onsubmit="return submitForm()">
       <div class="form-group">
         <label>Select Role:</label>
         <div class="form-check">
@@ -138,11 +161,11 @@
           name="proctorUser"
           th:value="${user.username}"
         />
+        <div id="errorMessage" class="alert alert-danger" style="display: none;"></div>
       <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
     
-  </div>
-</div>
+<h4 style="text-align: center; margin-bottom: 20px">My Non-Available Dates</h4>
     <!-- Request Table -->
     <table class="request-table table table-striped">
       <thead>
@@ -158,12 +181,11 @@
             
               <td th:text="${proctor.username}"></td>
               <td th:text="${proctor.role}"></td>
+              <td th:text="${proctor.nonAvailableDates}"></td>
           </tr>
       </tbody>
       </table>
   </div>
-</body>
-</html>
 
   <!-- Bootstrap JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -178,5 +200,4 @@
     });
   </script>
 </body>
-
 </html>
