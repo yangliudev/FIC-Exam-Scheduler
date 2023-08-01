@@ -45,7 +45,6 @@ public class InstructorController {
         // create the instructor exam request
         Instructor newRequest = new Instructor(course_name, duration, section, firstChoice, secondChoice, thirdChoice, instructorUser);
         instRepo.save(newRequest);
-        
         return "redirect:/dashboard/teacher";
     }
 

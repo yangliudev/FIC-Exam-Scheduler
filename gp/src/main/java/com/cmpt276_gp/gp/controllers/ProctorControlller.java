@@ -81,6 +81,22 @@ public class ProctorControlller {
 
 
         // Edit non-available dates form
+        @GetMapping("/proctor/editDates/{uid}")
+        public String editRequestForm(@PathVariable Integer uid, Model model) {
+            model.addAttribute("proctor", procRepo.findById(uid).get());
+
+            return "users/proctor/editDates";
+        }
+
+        @PostMapping("/proctor/editDates/{uid}")
+        public String updateRequest(@PathVariable Integer uid, @ModelAttribute("proctor") Proctor proctor, Model model) {
+        
+            Proctor newRequest = procRepo.findById(uid).get();
+            newRequest.setRole(proctor.getRole());
+            newRequest.setNonAvailableDates(proctor.getNonAvailableDates());
+            procRepo.save(newRequest);
+            return "redirect:/users/proctor";		
+        }
 
         // Delete proctor's request by UID
         @GetMapping("/proctor/delete-request/{uid}")

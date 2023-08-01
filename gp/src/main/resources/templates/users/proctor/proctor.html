@@ -186,7 +186,7 @@
               </ul>
           </td>
           <td>
-            <a th:href="@{/request/{uid}(uid=${proctoruid})}" class="btn btn-primary actionButton">Edit</a>
+            <a th:href="@{/proctor/editDates/{uid}(uid=${proctor.uid})}" class="btn btn-primary actionButton">Edit</a>
           </td>
           <td>
             <a th:href="@{/proctor/delete-request/{uid}(uid=${proctor.uid})}" class="btn btn-danger actionButton">Delete</a>
