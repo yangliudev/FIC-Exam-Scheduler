@@ -28,17 +28,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
     @Autowired
     private AdminRepository adminRepo;
-
-    @GetMapping("/admin/dashboard")
-    public String showAdminDashboard(Model model){
-        return "redirect:/users/admin";
-    }
     @Autowired
     public InstructorRepository instRepo;
     @Autowired
     private UserRepository userRepo;
     public Users current_user;
     //controller for admin
+
+    @GetMapping("/admin/dashboard")
+    public String showAdminDashboard(Model model){
+        return "redirect:/users/admin";
+    }
 
     @GetMapping("/admin/exams")
     public String viewExamRequests(Model model) {
@@ -65,16 +65,12 @@ public class AdminController {
     
         return "redirect:/users/admin";
     }
- 
-    @PostMapping("/admin/removeUser")
-    public String removeUser(@RequestParam("username") String username, Model model){
-        if (username.equals(null)){
-            userRepo.deleteById(null);
-        }
-        Users deleteUser = userRepo.findByUsername(username);
-        userRepo.delete(deleteUser);
-        List<Users> users = userRepo.findAll();
-        model.addAttribute("users", users);
+
+     // delete a user from table
+    @GetMapping("/admin/removeUser/{uid}")
+    public String removeUser(@PathVariable Integer uid) {
+        userRepo.deleteById(uid);
         return "redirect:/admin/users";
     }
+
 }
