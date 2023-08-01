@@ -18,30 +18,23 @@ public class MailService {
     @Autowired
     SendGrid sendGrid;
 
-    public Response sendEmail(EmailRequest emailReq){
-        // for testing 
-        Mail mail = new Mail(new Email("sjd8@sfu.ca"), emailReq.getSubject(), new Email(emailReq.getTo()), new Content("application/json", emailReq.getBody()));
+    public Response sendEmail(EmailRequest emailReq) {
+        Mail mail = new Mail(new Email("sjd8@sfu.ca"), emailReq.getSubject(), new Email(emailReq.getTo()), new Content("text/plain", emailReq.getBody()));
         mail.setReplyTo(new Email("sjd8@sfu.ca"));
-
+    
         Request request = new Request();
-
         Response response = null;
-
-        try{ 
+    
+        try {
             request.setMethod(Method.POST);
-            
             request.setEndpoint("mail/send");
-
             request.setBody(mail.build());
-
+    
             response = this.sendGrid.api(request);
-
-        }
-
-        catch(IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-
+    
         return response;
     }
 }
