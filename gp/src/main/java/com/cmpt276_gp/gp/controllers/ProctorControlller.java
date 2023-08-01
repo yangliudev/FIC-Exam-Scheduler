@@ -79,4 +79,13 @@ public class ProctorControlller {
         return "users/proctor/proctorNADates";
     }
 
+
+        // Edit non-available dates form
+
+        // Delete proctor's request by UID
+        @GetMapping("/proctor/delete-request/{uid}")
+        public String deleteProctorRequest(@PathVariable Integer uid) {
+            procRepo.deleteById(uid);
+            return "redirect:/users/proctor";
+        }
 }

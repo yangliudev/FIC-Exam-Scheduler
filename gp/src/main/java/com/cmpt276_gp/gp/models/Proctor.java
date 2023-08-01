@@ -51,5 +51,13 @@ public class Proctor {
         this.nonAvailableDates = nonAvailableDates;
     }
 
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
 }
  

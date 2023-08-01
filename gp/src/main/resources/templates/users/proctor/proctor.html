@@ -166,29 +166,35 @@
     </form>
     
 <h4 style="text-align: center; margin-bottom: 20px">My Non-Available Dates</h4>
-    <!-- Request Table -->
-    <table class="request-table table table-striped">
-      <thead>
-          <tr>
+<table class="request-table table table-striped">
+  <thead>
+      <tr>
           <th>Proctor</th>
           <th>Role</th>
           <th>Non Available Dates</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr th:each="proctor: ${requests}"
-          th:if="${proctor.username} == ${user.username}">
-            
-              <td th:text="${proctor.username}"></td>
-              <td th:text="${proctor.role}"></td>
-              <td>
-                <ul>
-                    <li th:each="date : ${proctor.nonAvailableDates}" th:text="${date}"></li>
-                </ul>
-            </td>
-          </tr>
-      </tbody>
-      </table>
+          <th>Edit</th>
+          <th>Delete</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr th:each="proctor: ${requests}" th:if="${proctor.username} == ${user.username}">
+          <td th:text="${proctor.username}"></td>
+          <td th:text="${proctor.role}"></td>
+          <td>
+              <ul>
+                  <li th:each="date : ${proctor.nonAvailableDates}" th:text="${date}"></li>
+              </ul>
+          </td>
+          <td>
+            <a th:href="@{/request/{uid}(uid=${proctoruid})}" class="btn btn-primary actionButton">Edit</a>
+          </td>
+          <td>
+            <a th:href="@{/proctor/delete-request/{uid}(uid=${proctor.uid})}" class="btn btn-danger actionButton">Delete</a>
+          </td>
+      </tr>
+  </tbody>
+</table>
+
   </div>
 
   <!-- Bootstrap JavaScript -->
