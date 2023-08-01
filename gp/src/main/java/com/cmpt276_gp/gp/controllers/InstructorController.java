@@ -46,15 +46,7 @@ public class InstructorController {
         Instructor newRequest = new Instructor(course_name, duration, section, firstChoice, secondChoice, thirdChoice, instructorUser);
         instRepo.save(newRequest);
         
-        return "redirect:/dashboard/teacher";
-    }
-
-    @GetMapping("/dashboard/teacher")
-    public String showIntructorPage(Model model) {
-        List<Instructor> requests = instRepo.findAll();
-        model.addAttribute("requests", requests);
-
-        return "redirect:/dashboard/teacher";
+        return "redirect:/users/teacher";
     }
 
     // edit request attributes
@@ -80,11 +72,18 @@ public class InstructorController {
 		return "redirect:/users/teacher";		
 	}
 
+<<<<<<< HEAD
+=======
+    // delete a request from table
+>>>>>>> 33f8f3def86c96427513cce63a5f578764d4120b
     @GetMapping("/request/delete/{uid}")
     public String deleteRequest(@PathVariable Integer uid) {
         instRepo.deleteById(uid);
         return "redirect:/users/teacher";
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 33f8f3def86c96427513cce63a5f578764d4120b
 
 }
