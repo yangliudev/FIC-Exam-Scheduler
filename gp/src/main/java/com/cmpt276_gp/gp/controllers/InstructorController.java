@@ -85,6 +85,5 @@ public class InstructorController {
         instRepo.deleteById(uid);
         return "redirect:/users/teacher";
     }
-    
 
 }
