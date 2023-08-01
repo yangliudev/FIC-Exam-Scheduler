@@ -156,7 +156,41 @@
         </table>
     </div>
 
+    <button id="sendEmailButton" class="btn btn-primary">Send Email</button>
+
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      function sendEmail() {
+        var emailAddress = 'boget91653@naymedia.com';
+
+        var emailData = {
+          to: emailAddress,
+          subject: 'TEST from Spring App',
+          body: 'TEST from Spring App',
+        };
+
+        fetch('/sendEmail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(emailData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data.message);
+            console.error('data.message:', data.message);
+          })
+          .catch((error) => {
+            alert('Failed to send email.');
+            console.error('Error:', error);
+          });
+      }
+
+      document.getElementById('sendEmailButton').addEventListener('click', sendEmail);
+    </script>
+
   </body>
 </html>
