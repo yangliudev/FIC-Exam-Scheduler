@@ -114,15 +114,15 @@
         style="margin-top: 15px"
         th:text="'Welcome, Instructor ' + ${user.username}"
       ></h1>
-
-      <h2>Teacher Dashboard</h2>
-
       <nav>
         <ul>
           <!-- Add relevant links for proctor dashboard -->
           <li><a href="/teacher/finalDates">Finalized Exams</a></li>
         </ul>
       </nav>
+
+
+      <h2>Teacher Dashboard</h2>
 
       <!-- Request Form -->
       <form class="request-form" action="/instructor/create" method="post">
