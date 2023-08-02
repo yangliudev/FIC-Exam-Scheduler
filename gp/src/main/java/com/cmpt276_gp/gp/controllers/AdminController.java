@@ -16,6 +16,8 @@ import com.cmpt276_gp.gp.models.Admin;
 import com.cmpt276_gp.gp.models.AdminRepository;
 import com.cmpt276_gp.gp.models.Instructor;
 import com.cmpt276_gp.gp.models.InstructorRepository;
+import com.cmpt276_gp.gp.models.Proctor;
+import com.cmpt276_gp.gp.models.ProctorRepository;
 import com.cmpt276_gp.gp.models.UserRepository;
 import com.cmpt276_gp.gp.models.Users;
 
@@ -32,6 +34,8 @@ public class AdminController {
     public InstructorRepository instRepo;
     @Autowired
     private UserRepository userRepo;
+    @Autowired
+    private ProctorRepository procRepo;
     public Users current_user;
     //controller for admin
 
@@ -39,7 +43,12 @@ public class AdminController {
     public String showAdminDashboard(Model model){
         return "redirect:/users/admin";
     }
-
+    @GetMapping("/admin/proctors")
+    public String showProctors(Model model){
+        List<Proctor> proctors = procRepo.findAll();
+        model.addAttribute("proctors", proctors);
+        return "users/admin/proctors";
+    }
     @GetMapping("/admin/exams")
     public String viewExamRequests(Model model) {
         List<Instructor> teacherTable = instRepo.findAll();
