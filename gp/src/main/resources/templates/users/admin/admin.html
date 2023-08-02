@@ -158,19 +158,25 @@
     </div>
 
     <button id="sendEmailButton" class="btn btn-primary">Send Email</button>
+
+    <!-- dynamic info for email -->
     <div id="userEmail" th:attr="data-user-email=${user.email}" style="display: none;"></div>
+    <div id="userName" th:attr="data-user-name=${user.username}" style="display: none;"></div>
 
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
       function sendEmail() {
-        var emailAddress = document.getElementById('userEmail').getAttribute('data-user-email');
+        let emailAddress = document.getElementById('userEmail').getAttribute('data-user-email');
 
-        var emailData = {
+        let subject = 'Notice of Finalized Exams';
+        let body = 'Hi ' + document.getElementById('userName').getAttribute('data-user-name') + ' your finalized exam schedule is ready to be viewed on your dashboard. Please login to your account to view it.';
+
+        let emailData = {
           to: emailAddress,
-          subject: 'TEST from Spring App',
-          body: 'THIS IS THE BODY',
+          subject: subject,
+          body: body,
         };
 
         fetch('/sendEmail', {
