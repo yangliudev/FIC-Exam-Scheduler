@@ -170,13 +170,13 @@
       function sendEmail() {
         let emailAddress = document.getElementById('userEmail').getAttribute('data-user-email');
 
-        let subject = 'Finalized Exam Schedule for ' + document.getElementById('userName').getAttribute('data-user-name');
-        console.log("adsf", subject);
+        let subject = 'Notice of Finalized Exams';
+        let body = 'Hi ' + document.getElementById('userName').getAttribute('data-user-name') + ' your finalized exam schedule is ready to be viewed on your dashboard. Please login to your account to view it.';
 
         let emailData = {
           to: emailAddress,
           subject: subject,
-          body: 'THIS IS THE BODY',
+          body: body,
         };
 
         fetch('/sendEmail', {
