@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.cmpt276_gp.gp.models.Admin;
+import com.cmpt276_gp.gp.models.AdminRepository;
 import com.cmpt276_gp.gp.models.Instructor;
 import com.cmpt276_gp.gp.models.InstructorRepository;
 import com.cmpt276_gp.gp.models.Users;
@@ -26,9 +29,19 @@ public class InstructorController {
     @Autowired
     public UserRepository userRepo;
 
+    @Autowired
+    public AdminRepository adminRepo;
+
     public Users current_user;
     // Controller for instructors
 
+
+    @GetMapping("/instructor/dashboard")
+    public String showProctorDashboard(Model model){
+        List<Instructor> requests = instRepo.findAll();
+        model.addAttribute("requests", requests);
+        return "redirect:/users/teacher";
+    }
     // create request
     @PostMapping("/instructor/create")
     public String createRequest(@RequestParam Map<String, String> instructor){
@@ -68,13 +81,20 @@ public class InstructorController {
         newRequest.setThird_choice(teacher.getThird_choice());
 		
 		instRepo.save(newRequest);
-		return "redirect:/users/teacher";		
+		return "redirect:/users/teacher";
 	}
 
     @GetMapping("/request/delete/{uid}")
     public String deleteRequest(@PathVariable Integer uid) {
         instRepo.deleteById(uid);
         return "redirect:/users/teacher";
+    }
+
+    @GetMapping("/teacher/finalDates")
+    public String viewFinalDates(Model model) {
+        List<Admin> adminTable = adminRepo.findAll();
+        model.addAttribute("adminTable", adminTable);
+        return "users/teacher/finalizedExams";
     }
 
 }
