@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.cmpt276_gp.gp.models.Admin;
+import com.cmpt276_gp.gp.models.AdminRepository;
 import com.cmpt276_gp.gp.models.Instructor;
 import com.cmpt276_gp.gp.models.InstructorRepository;
 import com.cmpt276_gp.gp.models.Proctor;
@@ -35,6 +37,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ProctorControlller {
     @Autowired
     private ProctorRepository procRepo;
+    @Autowired
+    private AdminRepository adminRepo;
     @Autowired
     public InstructorRepository instRepo;
     @Autowired
@@ -79,7 +83,12 @@ public class ProctorControlller {
         return "users/proctor/proctorNADates";
     }
 
-
+    @GetMapping("/proctor/finalDates")
+    public String viewFinalDates(Model model) {
+        List<Admin> adminTable = adminRepo.findAll();
+        model.addAttribute("adminTable", adminTable);
+        return "users/proctor/finalizedExams";
+    }
         // Edit non-available dates form
         @GetMapping("/proctor/editDates/{uid}")
         public String editRequestForm(@PathVariable Integer uid, Model model) {
